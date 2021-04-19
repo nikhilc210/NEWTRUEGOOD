@@ -1,0 +1,6 @@
+module Pods_Truegood {
+  umbrella header "Pods-Truegood-umbrella.h"
+
+  export *
+  module * { export * }
+}

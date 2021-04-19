@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Truegood</string>
+    <string name="facebook_app_id">677740386212638</string>
+    <!-- <string name="facebook_app_id">657491524920804</string> -->
+    <string name="fb_login_protocol_scheme">fb677740386212638</string>
+</resources>

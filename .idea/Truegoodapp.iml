@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/compatible_screen_manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/dex" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/merged_assets" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/merged_native_libs" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/module_bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/processed_res" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/signing_config" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/intermediates/stripped_native_libs" />
+      <excludeFolder url="file://$MODULE_DIR$/android/app/build/outputs/logs" />
+      <excludeFolder url="file://$MODULE_DIR$/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

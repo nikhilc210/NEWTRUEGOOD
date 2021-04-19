@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "684761604594",
+    "project_id": "truegood-810ab",
+    "storage_bucket": "truegood-810ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684761604594:android:0fb6f47818cef01dc00b6b",
+        "android_client_info": {
+          "package_name": "com.truegood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD5vHqTdTh6sV6EfuU3C5--W9mUAZx3zQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
