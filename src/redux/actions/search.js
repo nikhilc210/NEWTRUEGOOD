@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from "axios";
 //API IMPORTS
-import {API_URL} from '../../constants/url';
+import { API_URL } from "../../constants/url";
 
 //Types Imports
 import {
@@ -9,7 +9,7 @@ import {
   SEARCH_PRODUCTS_REQUEST,
   SEARCH_PRODUCTS_SUCCESS,
   SET_QUERY,
-} from '../types';
+} from "../types";
 
 export const searchProducts = (query) => async (dispatch) => {
   dispatch({
@@ -23,7 +23,7 @@ export const searchProducts = (query) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -51,5 +51,12 @@ export const filterProductOnCategory = (categoryId) => async (dispatch) => {
   dispatch({
     type: FILTER_PRODUCT,
     payload: categoryId,
+  });
+};
+
+export const resetSearch = () => async (dispatch) => {
+  dispatch({
+    type: SEARCH_PRODUCTS_SUCCESS,
+    payload: [],
   });
 };

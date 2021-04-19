@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {Searchbar} from 'react-native-paper';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet } from "react-native";
+import { Searchbar } from "react-native-paper";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {searchProducts} from '../../redux/actions/search';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { searchProducts, resetSearch } from "../../redux/actions/search";
 
-const SearchBarView = ({searchProducts, query = ''}) => {
+const SearchBarView = ({ searchProducts, resetSearch, query = "" }) => {
   const [searchQuery, setSearchQuery] = useState(query);
 
   const onChangeSearch = (query) => {
@@ -24,6 +24,11 @@ const SearchBarView = ({searchProducts, query = ''}) => {
     searchProducts(searchQuery);
   };
 
+  useEffect(() => {
+    resetSearch();
+    setSearchQuery("");
+  }, []);
+
   return (
     <View style={styles.container}>
       <Searchbar
@@ -32,23 +37,24 @@ const SearchBarView = ({searchProducts, query = ''}) => {
         autoFocus={true}
         value={searchQuery}
         onSubmitEditing={onSubmit}
-        icon={() => <MaterialIcons name={'search'} size={20} color={'#AAA'} />}
+        icon={() => <MaterialIcons name={"search"} size={20} color={"#AAA"} />}
       />
     </View>
   );
 };
 SearchBarView.propTypes = {
   searchProducts: PropTypes.func.isRequired,
+  resetSearch: PropTypes.func,
 };
 
-export default connect(null, {searchProducts})(SearchBarView);
+export default connect(null, { searchProducts, resetSearch })(SearchBarView);
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    backgroundColor: '#1CA953',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: "100%",
+    backgroundColor: "#1CA953",
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
   },
 });

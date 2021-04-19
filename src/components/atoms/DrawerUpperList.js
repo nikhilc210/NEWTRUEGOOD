@@ -1,54 +1,67 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {RFValue} from 'react-native-responsive-fontsize';
-
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {COLORS, FONTS} from '../../constants/theme';
-
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-
-import {navigate} from '../../navigations/RootNavigation';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { COLORS, FONTS } from "../../constants/theme";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { navigate } from "../../navigations/RootNavigation";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {LogOut} from '../../redux/actions/auth';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { LogOut } from "../../redux/actions/auth";
+import { Alert } from "react-native";
 
-const DrawerUpperList = ({LogOut}) => {
+const DrawerUpperList = ({ LogOut }) => {
+  const onLogOutPress = () => {
+    Alert.alert("Confirm", "Do you want to sign out?", [
+      {
+        text: "Cancel",
+        onPress: () => null,
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => LogOut() },
+    ]);
+  };
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.singleListViewStyle}
-        onPress={() => navigate('MyOrderNavigator')}>
+        onPress={() => navigate("MyOrderNavigator")}
+      >
         <Text style={styles.titleTextStyle}>My Orders</Text>
-        <FontAwesome name="angle-right" size={hp('3%')} color={COLORS.black} />
+        <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.singleListViewStyle}
-        onPress={() => navigate('DeliveryNavigator')}>
+        onPress={() => navigate("DeliveryNavigator")}
+      >
         <Text style={styles.titleTextStyle}>Delivery Address</Text>
-        <FontAwesome name="angle-right" size={hp('3%')} color={COLORS.black} />
+        <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.singleListViewStyle}
-        onPress={() => navigate('InviteFriendNavigator')}>
+        onPress={() => navigate("InviteFriendNavigator")}
+      >
         <Text style={styles.titleTextStyle}>Invite your Friend</Text>
-        <FontAwesome name="angle-right" size={hp('3%')} color={COLORS.black} />
+        <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.singleListViewStyle}
-        onPress={() => navigate('NotificationNavigator')}>
+        onPress={() => navigate("NotificationNavigator")}
+      >
         <Text style={styles.titleTextStyle}>Notifications</Text>
-        <FontAwesome name="angle-right" size={hp('3%')} color={COLORS.black} />
+        <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
       </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.singleListViewStyle}
-        onPress={() => LogOut()}>
+        onPress={onLogOutPress}
+      >
         <Text style={styles.titleTextStyle}>Sign Out</Text>
-        <Ionicons name="exit-outline" size={hp('2.5%')} color={COLORS.black} />
+        <Ionicons name="exit-outline" size={hp("2.5%")} color={COLORS.black} />
       </TouchableOpacity>
     </View>
   );
@@ -58,7 +71,7 @@ DrawerUpperList.propTypes = {
   LogOut: PropTypes.func.isRequired,
 };
 
-export default connect(null, {LogOut})(DrawerUpperList);
+export default connect(null, { LogOut })(DrawerUpperList);
 
 const styles = StyleSheet.create({
   container: {
@@ -67,11 +80,11 @@ const styles = StyleSheet.create({
     borderBottomColor: COLORS.textGrey,
   },
   singleListViewStyle: {
-    width: '100%',
-    padding: hp('2%'),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    width: "100%",
+    padding: hp("2%"),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   titleTextStyle: {
     fontSize: RFValue(13),

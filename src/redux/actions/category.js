@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   GET_ALL_CATEGORIES_SUCCESS,
   GET_ALL_CATEGORIES_ERROR,
@@ -6,12 +6,12 @@ import {
   SET_PRODUCT_LOADING,
   SET_FILTER_ACTIVE_CATEGORY,
   SEARCH_PRODUCTS_REQUEST,
-} from '../types';
+} from "../types";
 
 //API IMPORTS
-import {API_URL} from '../../constants/url';
-import {getProuctsByCategoryId} from './product';
-import {filterProductOnCategory} from './search';
+import { API_URL } from "../../constants/url";
+import { getProuctsByCategoryId } from "./product";
+import { filterProductOnCategory, searchProducts } from "./search";
 
 export const getAllCategories = () => async (dispatch) => {
   try {
@@ -38,15 +38,25 @@ export const setActiveCategory = (categoryId) => async (dispatch) => {
   dispatch(getProuctsByCategoryId(categoryId));
 };
 
-export const setActiveFilterCategory = (categoryId) => async (dispatch) => {
+export const setActiveFilterCategory = (categoryId, type) => async (
+  dispatch,
+  getState
+) => {
   dispatch({
     type: SET_FILTER_ACTIVE_CATEGORY,
-    payload: categoryId,
+    payload: {
+      categoryId,
+      type,
+    },
   });
 
-  dispatch({
-    type: SEARCH_PRODUCTS_REQUEST,
-  });
-
-  dispatch(filterProductOnCategory(categoryId));
+  if (type !== "deselect") {
+    dispatch({
+      type: SEARCH_PRODUCTS_REQUEST,
+    });
+    dispatch(filterProductOnCategory(categoryId));
+  } else {
+    const state = getState();
+    dispatch(searchProducts(state.search.query));
+  }
 };

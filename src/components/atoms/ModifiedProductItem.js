@@ -187,7 +187,7 @@ function ModifiedProductItem({
               onPress={() => {
                 // Toast.show(` ${item_stock}`, Toast.SHORT);
                 if (item_stock === 0) {
-                  Toast.show(`Out of stock`, Toast.SHORT);
+                  Toast.show(`Sold Out`, Toast.SHORT);
                 } else {
                   addToCartFunction();
                 }
@@ -197,7 +197,7 @@ function ModifiedProductItem({
                 if (item_stock === 0) {
                   return (
                     <View style={styles.outofStock}>
-                      <Text style={styles.addTextStyle}>Out of stock</Text>
+                      <Text style={styles.addTextStyle}>Sold Out</Text>
                     </View>
                   );
                 }
