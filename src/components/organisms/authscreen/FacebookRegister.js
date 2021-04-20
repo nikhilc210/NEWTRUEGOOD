@@ -48,7 +48,7 @@ const FacebookRegister = ({
       let token = data?.accessToken;
       const userData = await getDataFromFacebook(token);
 
-      if (!userData.email) {
+      if (userData.email) {
         await checkUser(userData, "fb");
       } else {
         Alert.alert(
@@ -80,8 +80,18 @@ const FacebookRegister = ({
       </View>
       <Dialog.Container visible={visible}>
         <Dialog.Title>Add Email Address</Dialog.Title>
-        <Dialog.Input onChangeText={setEmail} value={email} label="Email" />
-        <Dialog.Input onChangeText={setName} value={name} label="Name" />
+        <Dialog.Input
+          onChangeText={setEmail}
+          value={email}
+          label="Email"
+          autoCapitalize="none"
+        />
+        <Dialog.Input
+          onChangeText={setName}
+          value={name}
+          label="Name"
+          autoCapitalize="none"
+        />
         <Dialog.Button label="Confirm" onPress={onConfirmPress} />
       </Dialog.Container>
     </>
