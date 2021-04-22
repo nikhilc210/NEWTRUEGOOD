@@ -175,11 +175,12 @@ const AddAddressView = ({
 
                 <DropDownPicker
                   items={pincodes}
-                  containerStyle={[styles.inputStyle, { paddingLeft: 0 }]}
-                  value={values.pincode}
+                  containerStyle={{ marginTop: hp("2%"), height: hp("6%") }}
+                  style={{ backgroundColor: "white" }}
                   itemStyle={{
                     justifyContent: "flex-start",
                   }}
+                  dropDownStyle={{ backgroundColor: "#fafafa" }}
                   onChangeItem={(item) => setFieldValue("pincode", item, true)}
                 />
 

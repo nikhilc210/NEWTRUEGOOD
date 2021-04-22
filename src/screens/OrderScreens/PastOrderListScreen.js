@@ -1,27 +1,24 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-
+import React from "react";
+import { View, StyleSheet } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 //Required Imports
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import LiveOrderListItem from '../../components/organisms/orderscreen/LiveOrderListItem';
-
-import ProductLoader from '../../components/inc/ProductLoader';
-
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import ProductLoader from "../../components/inc/ProductLoader";
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getPastOrders} from '../../redux/actions/order';
-import PastOrderListItem from '../../components/organisms/orderscreen/PastOrderListItem';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getPastOrders } from "../../redux/actions/order";
+import PastOrderListItem from "../../components/organisms/orderscreen/PastOrderListItem";
+import { ScrollView } from "react-native-gesture-handler";
 
 const PastOrderListScreen = ({
   getPastOrders,
-  orderData: {pastOrders, pastOrderLoading},
+  orderData: { pastOrders, pastOrderLoading },
 }) => {
   useFocusEffect(
     React.useCallback(() => {
       getPastOrders();
-    }, []),
+    }, [])
   );
 
   return (
@@ -29,9 +26,11 @@ const PastOrderListScreen = ({
       {pastOrderLoading ? (
         <ProductLoader />
       ) : (
-        pastOrders?.map((order) => (
-          <PastOrderListItem item={order} key={order._id} />
-        ))
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {pastOrders?.map((order) => (
+            <PastOrderListItem item={order} key={order._id} />
+          ))}
+        </ScrollView>
       )}
     </View>
   );
@@ -45,8 +44,8 @@ const mapStateToProps = (state) => ({
   orderData: state.order, //name of prop = alert
 });
 
-export default connect(mapStateToProps, {getPastOrders})(PastOrderListScreen);
+export default connect(mapStateToProps, { getPastOrders })(PastOrderListScreen);
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: 'white', padding: hp('2%')},
+  container: { flex: 1, backgroundColor: "white", padding: hp("2%") },
 });
