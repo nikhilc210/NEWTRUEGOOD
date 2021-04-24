@@ -1,16 +1,12 @@
-import Snackbar from "react-native-snackbar";
-
 import {
   CHECK_INVENTORY_ERROR,
   CHECK_INVENTORY_REQUEST,
   CHECK_INVENTORY_SUCCESS,
 } from "../types";
-
 //API IMPORTS
 import { API_URL } from "../../constants/url";
 import axios from "axios";
 import { navigate } from "../../navigations/RootNavigation";
-
 //API IMPORTS
 
 export const checkInventory = (order_details) => async (dispatch) => {

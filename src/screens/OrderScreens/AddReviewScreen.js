@@ -1,28 +1,28 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {RFValue} from 'react-native-responsive-fontsize';
-import {COLORS, FONTS} from '../../constants/theme';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { RFValue } from "react-native-responsive-fontsize";
+import { COLORS, FONTS } from "../../constants/theme";
+import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
 
 //Ratings::
-import StarRating from 'react-native-star-rating';
+import StarRating from "react-native-star-rating";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {addProductRating} from '../../redux/actions/product';
-import {ActivityIndicator} from 'react-native-paper';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { addProductRating } from "../../redux/actions/product";
+import { ActivityIndicator } from "react-native-paper";
 
 const AddReviewScreen = ({
   addProductRating,
-  productData: {addRatingLoading},
+  productData: { addRatingLoading },
   route,
 }) => {
   const [starCount, setStarCount] = useState(0);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
-  const {productId} = route.params;
+  const { productId } = route.params;
 
   const submitReview = () => {
     const sendData = {
@@ -36,13 +36,13 @@ const AddReviewScreen = ({
   return (
     <>
       <View style={styles.container}>
-        <Text style={[styles.textStyle, {color: COLORS.black}]}>Rating</Text>
+        <Text style={[styles.textStyle, { color: COLORS.black }]}>Rating</Text>
         <StarRating
           disabled={false}
-          containerStyle={{marginTop: hp('1%')}}
+          containerStyle={{ marginTop: hp("1%") }}
           maxStars={5}
-          fullStarColor={'orange'}
-          starSize={hp('4%')}
+          fullStarColor={"orange"}
+          starSize={hp("4%")}
           rating={starCount}
           selectedStar={(rating) => setStarCount(rating)}
         />
@@ -50,22 +50,24 @@ const AddReviewScreen = ({
           <Text
             style={[
               styles.textStyle,
-              {color: COLORS.black, marginBottom: hp(4), marginTop: hp(2)},
-            ]}>
+              { color: COLORS.black, marginBottom: hp(4), marginTop: hp(2) },
+            ]}
+          >
             Your Review
           </Text>
         </View>
         <TextInput
           style={[styles.textInput]}
-          textAlignVertical={'top'}
+          textAlignVertical={"top"}
           multiline={true}
           placeholder="Write a review"
           onChangeText={(text) => setMessage(text)}
         />
-        <View style={{flex: 1, justifyContent: 'flex-end'}}>
+        <View style={{ flex: 1, justifyContent: "flex-end" }}>
           <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={submitReview}>
+            onPress={submitReview}
+          >
             {addRatingLoading ? (
               <ActivityIndicator color="white" size="small" />
             ) : (
@@ -91,26 +93,26 @@ export default connect(mapStateToProps, {
 })(AddReviewScreen);
 
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: hp('2%'), backgroundColor: '#fff'},
+  container: { flex: 1, padding: hp("2%"), backgroundColor: "#fff" },
   textStyle: {
     fontSize: RFValue(13),
     color: COLORS.white,
     fontFamily: FONTS.primaryFONT,
-    fontWeight: 'bold',
-    textAlignVertical: 'top',
+    fontWeight: "bold",
+    textAlignVertical: "top",
   },
   buttonContainer: {
-    padding: hp('1.5%'),
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: hp("1.5%"),
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: COLORS.primary,
-    flexDirection: 'row',
-    margin: hp('2%'),
+    flexDirection: "row",
+    margin: hp("2%"),
   },
   textInput: {
-    height: hp('20%'),
-    backgroundColor: '#fff',
+    height: hp("20%"),
+    backgroundColor: "#fff",
     borderWidth: 0.5,
-    borderRadius: hp('0.5%'),
+    borderRadius: hp("0.5%"),
   },
 });

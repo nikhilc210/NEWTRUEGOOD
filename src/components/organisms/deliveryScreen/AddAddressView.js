@@ -181,7 +181,9 @@ const AddAddressView = ({
                     justifyContent: "flex-start",
                   }}
                   dropDownStyle={{ backgroundColor: "#fafafa" }}
-                  onChangeItem={(item) => setFieldValue("pincode", item, true)}
+                  onChangeItem={(item) =>
+                    setFieldValue("pincode", item.value, true)
+                  }
                 />
 
                 {errors.pincode && touched.pincode ? (

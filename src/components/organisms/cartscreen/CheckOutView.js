@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-paper";
-
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";

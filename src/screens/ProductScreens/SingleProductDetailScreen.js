@@ -6,12 +6,9 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen";
-
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-//
 import { RFValue } from "react-native-responsive-fontsize";
 import { COLORS, FONTS } from "../../constants/theme";
-
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -22,13 +19,11 @@ import {
   incQuantity,
   removeItem,
 } from "../../redux/actions/cart";
-
 import ProductLoader from "../../components/inc/ProductLoader";
-
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Entypo from "react-native-vector-icons/Entypo";
-
 import Toast from "react-native-simple-toast";
+import { Button, List } from "react-native-paper";
 
 const SingleProductDetailScreen = ({
   route,
@@ -111,6 +106,8 @@ const SingleProductDetailScreen = ({
     }
   };
 
+  console.log(ratings);
+
   return (
     <View style={styles.container}>
       <CategoryHeader />
@@ -134,44 +131,45 @@ const SingleProductDetailScreen = ({
               </View>
               <View style={{ flexDirection: "row", marginTop: hp("2%") }}>
                 {qty > 0 ? (
-                  <View style={styles.addedContainer}>
-                    <Pressable
-                      style={{ paddingHorizontal: wp("1.5%") }}
-                      onPress={() => decreaseCart()}
-                    >
-                      <AntDesign
-                        name="minus"
-                        color={COLORS.primary}
-                        size={hp("3%")}
-                      />
-                    </Pressable>
-                    <View style={styles.backgroundStyle}>
-                      <Text style={styles.qtyTextStyle}>{qty}</Text>
+                  <View>
+                    <View style={styles.addedContainer}>
+                      <Pressable onPress={() => decreaseCart()}>
+                        <AntDesign
+                          name="minus"
+                          color={COLORS.primary}
+                          size={hp("3%")}
+                          style={{ marginRight: wp("2%") }}
+                        />
+                      </Pressable>
+                      <View style={styles.backgroundStyle}>
+                        <Text style={styles.qtyTextStyle}>{qty}</Text>
+                      </View>
+                      <Pressable onPress={() => increaseCart()}>
+                        <Entypo
+                          name="plus"
+                          color={COLORS.primary}
+                          size={hp("3%")}
+                          style={{ marginLeft: wp("2%") }}
+                        />
+                      </Pressable>
                     </View>
-                    <Pressable
-                      style={{ paddingHorizontal: wp("1.5%") }}
-                      onPress={() => increaseCart()}
-                    >
-                      <Entypo
-                        name="plus"
-                        color={COLORS.primary}
-                        size={hp("3%")}
-                      />
-                    </Pressable>
                   </View>
                 ) : (
-                  <Pressable
-                    onPress={() => {
-                      if (item_stock === 0) {
-                        Toast.show(`Product out of stock`, Toast.SHORT);
-                      } else {
-                        addToCartFunction();
-                      }
-                    }}
-                    style={styles.addContainer}
-                  >
-                    <Text style={styles.addTextStyle}>ADD</Text>
-                  </Pressable>
+                  <View>
+                    <Button
+                      mode="contained"
+                      onPress={() => {
+                        if (item_stock === 0) {
+                          Toast.show(`Product out of stock`, Toast.SHORT);
+                        } else {
+                          addToCartFunction();
+                        }
+                      }}
+                      style={styles.addContainer}
+                    >
+                      ADD
+                    </Button>
+                  </View>
                 )}
               </View>
             </View>
@@ -191,55 +189,43 @@ const SingleProductDetailScreen = ({
             </Text>
             {ratings.map((singleRating, index) => {
               return (
-                <View key={index} style={{ flexDirection: "row" }}>
-                  <View style={styles.ratingView}>
-                    <Text
-                      style={[
-                        styles.ratingNumberTextStyle,
-                        {
-                          fontSize: RFValue(12),
-                        },
-                      ]}
-                    >
-                      {singleRating?.star}
-                    </Text>
-                    <View style={{ paddingTop: hp(0.5), paddingRight: hp(1) }}>
-                      <FontAwesome
-                        name="star"
-                        color={COLORS.primary}
-                        size={hp("2.0%")}
-                      />
-                    </View>
-                    <Text style={[styles.AddressDetail, { color: "black" }]}>
-                      {singleRating?.message}
-                    </Text>
-                  </View>
+                <View key={index} style={styles.ratingView}>
+                  <List.Item
+                    title="First Item"
+                    description={singleRating?.message}
+                    left={(props) => (
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <Text
+                          style={[
+                            styles.ratingNumberTextStyle,
+                            {
+                              fontSize: RFValue(14),
+                            },
+                          ]}
+                        >
+                          {singleRating?.star}
+                        </Text>
+                        <View
+                          style={{ paddingTop: hp(0.5), paddingRight: hp(1) }}
+                        >
+                          <FontAwesome
+                            name="star"
+                            color={COLORS.primary}
+                            size={hp("2.0%")}
+                          />
+                        </View>
+                      </View>
+                    )}
+                  />
                 </View>
               );
             })}
-            {/*<View style={{flexDirection: 'row'}}>*/}
-            {/*  <View style={styles.ratingView}>*/}
-            {/*    <Text*/}
-            {/*      style={[*/}
-            {/*        styles.ratingNumberTextStyle,*/}
-            {/*        {*/}
-            {/*          fontSize: RFValue(12),*/}
-            {/*        },*/}
-            {/*      ]}>*/}
-            {/*      4.1*/}
-            {/*    </Text>*/}
-            {/*    <View style={{paddingTop: hp(0.5), paddingRight: hp(1)}}>*/}
-            {/*      <FontAwesome*/}
-            {/*        name="star"*/}
-            {/*        color={COLORS.primary}*/}
-            {/*        size={hp('2.0%')}*/}
-            {/*      />*/}
-            {/*    </View>*/}
-            {/*    <Text style={[styles.AddressDetail, {color: 'black'}]}>*/}
-            {/*      This product is very good Please Buy it*/}
-            {/*    </Text>*/}
-            {/*  </View>*/}
-            {/*</View>*/}
           </View>
         </ScrollView>
       )}
@@ -305,7 +291,7 @@ const styles = StyleSheet.create({
     textDecorationStyle: "solid",
     marginLeft: hp("1%"),
   },
-  ratingView: { flexDirection: "row", marginTop: hp("2%") },
+  ratingView: { borderColor: "lightgrey", borderWidth: 1, marginTop: 5 },
   ratingNumberTextStyle: {
     fontSize: RFValue(14),
     color: "#818596",
@@ -336,7 +322,6 @@ const styles = StyleSheet.create({
     borderRadius: hp("1%"),
   },
   addContainer: {
-    paddingVertical: hp("1.0%"),
     paddingHorizontal: wp("10%"),
     flexDirection: "row",
     alignItems: "center",
@@ -350,10 +335,12 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.primaryFONT,
   },
   addedContainer: {
+    paddingHorizontal: wp("5%"),
     borderWidth: 1,
     borderColor: COLORS.primary,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     borderRadius: hp("0.5%"),
     elevation: 1,
     backgroundColor: "white",
@@ -361,9 +348,9 @@ const styles = StyleSheet.create({
   backgroundStyle: {
     backgroundColor: COLORS.primary,
     paddingHorizontal: wp("3%"),
-    paddingVertical: hp("0.9%"),
   },
   qtyTextStyle: {
+    paddingVertical: hp("0.6%"),
     fontSize: RFValue(14),
     color: COLORS.white,
     fontFamily: FONTS.primaryFONT,

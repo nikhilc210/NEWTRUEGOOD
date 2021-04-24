@@ -1,16 +1,10 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import axios from 'axios';
-
-import setAuthToken from '../../../utils/setAuthToken';
-
-import Toast from 'react-native-simple-toast'
-
-
-
+import AsyncStorage from "@react-native-community/async-storage";
+import axios from "axios";
+import setAuthToken from "../../../utils/setAuthToken";
+import Toast from "react-native-simple-toast";
 //API IMPORTS
-import {API_URL} from '../../constants/url';
-
-import {navigate} from '../../navigations/RootNavigation';
+import { API_URL } from "../../constants/url";
+import { navigate } from "../../navigations/RootNavigation";
 
 //Types Imports
 import {
@@ -24,8 +18,7 @@ import {
   ADD_RATING_ERROR,
   GET_MAIN_OFFER_SUCCESS,
   GET_MAIN_OFFER_ERROR,
-  FILTER_PRODUCT,
-} from '../types';
+} from "../types";
 
 export const getProuctsByCategoryId = (categoryId) => async (dispatch) => {
   try {
@@ -98,14 +91,14 @@ export const addProductRating = (data) => async (dispatch) => {
     type: ADD_RATING_REQUEST,
   });
 
-  let token = await AsyncStorage.getItem('TRUEGOOD:user_token');
+  let token = await AsyncStorage.getItem("TRUEGOOD:user_token");
   if (token) {
     setAuthToken(token);
   }
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -118,12 +111,9 @@ export const addProductRating = (data) => async (dispatch) => {
       type: ADD_RATING_SUCCESS,
     });
 
-    Toast.show(
-      'The rating has been added successfully !',
-      Toast.SHORT,
-    );
+    Toast.show("The rating has been added successfully !", Toast.SHORT);
 
-    navigate('Home');
+    navigate("Home");
   } catch (err) {
     const errors = err?.response?.data?.errors;
     dispatch({

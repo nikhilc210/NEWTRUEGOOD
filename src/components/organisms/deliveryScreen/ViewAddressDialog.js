@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, TextInput, Dimensions } from "react-native";
-
 import { Dialog } from "react-native-simple-dialogs";
 import { RFValue } from "react-native-responsive-fontsize";
 import { COLORS, FONTS } from "../../../constants/theme";
