@@ -106,8 +106,6 @@ const SingleProductDetailScreen = ({
     }
   };
 
-  console.log(ratings);
-
   return (
     <View style={styles.container}>
       <CategoryHeader />
@@ -191,7 +189,7 @@ const SingleProductDetailScreen = ({
               return (
                 <View key={index} style={styles.ratingView}>
                   <List.Item
-                    title="First Item"
+                    title={singleRating.user?.name}
                     description={singleRating?.message}
                     left={(props) => (
                       <View
