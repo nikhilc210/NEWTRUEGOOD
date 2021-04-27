@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   imageStyle: { height: wp("15%"), width: wp("15%"), borderRadius: wp("10%") },
   categoryNameTextStyle: {
-    fontSize: RFValue(10),
+    fontSize: RFValue(13),
     fontFamily: FONTS.primaryFONT,
     color: COLORS.black,
     textAlign: "center",

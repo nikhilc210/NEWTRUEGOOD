@@ -33,6 +33,8 @@ import RegisterOTPSheet from "../AuthScreens/RegisterOTPSheet";
 import RegisterSheet from "../AuthScreens/RegisterSheet";
 import MainOfferView from "../../components/organisms/homescreen/MainOfferView";
 import { useFocusEffect } from "@react-navigation/core";
+import RecommendedProducts from "../../components/organisms/RecommendedProducts";
+import BestSellerProducts from "../../components/organisms/BestSellerProducts";
 
 function HomeScren() {
   useFocusEffect(
@@ -63,11 +65,11 @@ function HomeScren() {
           <ThinBanner />
           <DealBanner />
           <ShopByCategoryView />
-          <ThinBanner />
           <OzoneBanner />
           <ExoticBanner />
           <MainOfferView />
-          <ThinBanner />
+          <RecommendedProducts />
+          <BestSellerProducts />
           <Informative />
           <ShopByCategoryView />
           <InformativeBanner />

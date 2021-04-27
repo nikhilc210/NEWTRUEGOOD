@@ -12,10 +12,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import EmptyCartScreen from "../../components/organisms/cartscreen/EmptyCartScreen";
 import CheckOutView from "../../components/organisms/cartscreen/CheckOutView";
+import BestSellerProducts from "../../components/organisms/BestSellerProducts";
+import RecommendedProducts from "../../components/organisms/RecommendedProducts";
 
 const CartScreen = ({ cartData: { items } }) => {
   return (
-    <>
+    <View style={{ flex: 1 }}>
       <CategoryHeader title="Cart" />
       {items.length > 0 ? (
         <>
@@ -38,9 +40,12 @@ const CartScreen = ({ cartData: { items } }) => {
           <CheckOutView />
         </>
       ) : (
-        <EmptyCartScreen />
+        <ScrollView>
+          <BestSellerProducts />
+          <RecommendedProducts />
+        </ScrollView>
       )}
-    </>
+    </View>
   );
 };
 

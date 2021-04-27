@@ -1,0 +1,53 @@
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { COLORS, FONTS } from "../../constants/theme";
+import { ActivityIndicator } from "react-native-paper";
+import { getBestSellerProducts } from "../../api/product";
+import ModifiedProductItem from "../atoms/ModifiedProductItem";
+
+const BestSellerProducts = () => {
+  const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      let data = await getBestSellerProducts();
+      setProducts(data);
+      setLoading(false);
+    };
+
+    setLoading(true);
+    getData();
+  }, []);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titleTextStyle}>Best Seller Products</Text>
+      <View style={styles.productContainer}>
+        {loading ? (
+          <ActivityIndicator color={COLORS.primary} />
+        ) : (
+          products?.map((product) => (
+            <ModifiedProductItem item={product} key={product._id} />
+          ))
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default BestSellerProducts;
+
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#f8f9fa", paddingVertical: hp("2%") },
+  titleTextStyle: {
+    fontSize: RFValue(16),
+    fontFamily: FONTS.primaryFONT,
+    fontWeight: "700",
+    color: COLORS.black,
+    margin: hp("1%"),
+  },
+  productContainer: { width: "100%", flexDirection: "row", flexWrap: "wrap" },
+});

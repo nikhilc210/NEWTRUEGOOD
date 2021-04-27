@@ -1,29 +1,26 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet, Pressable} from 'react-native';
-
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 //Responsive Imports
-import {RFValue} from 'react-native-responsive-fontsize';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-
+import { RFValue } from "react-native-responsive-fontsize";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 //Themes imports
-import {COLORS, FONTS} from '../../../constants/theme';
-import SingleCategoryItem from '../../atoms/SingleCategoryItem';
-
+import { COLORS, FONTS } from "../../../constants/theme";
+import SingleCategoryItem from "../../atoms/SingleCategoryItem";
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {
   getAllCategories,
   setActiveCategory,
-} from '../../../redux/actions/category';
+} from "../../../redux/actions/category";
 //
-import {navigate} from '../../../navigations/RootNavigation';
-import {ActivityIndicator} from 'react-native-paper';
+import { navigate } from "../../../navigations/RootNavigation";
+import { ActivityIndicator } from "react-native-paper";
 
 const ShopByCategoryView = ({
   getAllCategories,
   setActiveCategory,
-  categoryData: {categories, loading},
+  categoryData: { categories, loading },
 }) => {
   useEffect(() => {
     getAllCategories();
@@ -31,7 +28,7 @@ const ShopByCategoryView = ({
 
   const setActiveCategoryId = (categoryId) => {
     setActiveCategory(categoryId);
-    navigate('ProductListScreen');
+    navigate("ProductListScreen");
   };
 
   return (
@@ -44,7 +41,8 @@ const ShopByCategoryView = ({
           categories.map((value) => (
             <Pressable
               key={value._id}
-              onPress={() => setActiveCategoryId(value._id)}>
+              onPress={() => setActiveCategoryId(value._id)}
+            >
               <SingleCategoryItem data={value} />
             </Pressable>
           ))
@@ -64,23 +62,28 @@ const mapStateToProps = (state) => ({
   categoryData: state.category, //name of prop = alert
 });
 
-export default connect(mapStateToProps, {getAllCategories, setActiveCategory})(
-  ShopByCategoryView,
-);
+export default connect(mapStateToProps, {
+  getAllCategories,
+  setActiveCategory,
+})(ShopByCategoryView);
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#f8f9fa', padding: hp('2%')},
+  container: {
+    flex: 1,
+    backgroundColor: "#f8f9fa",
+    padding: hp("2%"),
+  },
   titleTextStyle: {
-    fontSize: RFValue(14),
+    fontSize: RFValue(16),
     fontFamily: FONTS.primaryFONT,
-    fontWeight: '700',
+    fontWeight: "700",
     color: COLORS.black,
-    marginBottom: hp('1%'),
+    marginBottom: hp("1%"),
   },
   categoryContainer: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
   },
 });

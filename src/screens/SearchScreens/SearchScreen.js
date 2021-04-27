@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import CategoryHeader from "../../components/inc/CategoryHeader";
 import SearchBarView from "../../components/inc/SearchBarView";
 import { FlatList } from "react-native-gesture-handler";
@@ -10,6 +10,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import ProductLoader from "../../components/inc/ProductLoader";
 import FilterCategoryTabView from "../../components/organisms/productlistscreen/FilterCategoryTabView";
+import { ScrollView } from "react-native";
+import RecommendedProducts from "../../components/organisms/RecommendedProducts";
+import BestSellerProducts from "../../components/organisms/BestSellerProducts";
 
 const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
   return (
@@ -28,15 +31,13 @@ const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
             return <ModifiedProductItem item={item} />;
           }}
         />
+      ) : query === null ? (
+        <ScrollView>
+          <RecommendedProducts />
+          <BestSellerProducts />
+        </ScrollView>
       ) : (
-        <FlatList
-          data={filterProducts}
-          keyExtractor={(item) => item._id}
-          numColumns={2}
-          renderItem={({ item }) => {
-            return <ModifiedProductItem item={item} />;
-          }}
-        />
+        <Text>No Product found as per search</Text>
       )}
     </View>
   );
