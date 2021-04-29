@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Text, Alert } from "react-native";
+import { View, StyleSheet, Text, Alert, Pressable } from "react-native";
 
 import BackHeader from "../../components/inc/BackHeader";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -79,11 +79,18 @@ const DeliveryScreen = ({
                 onPress={() => makeAddressActive(address)}
               />
               <View style={{ marginLeft: hp("1%") }}>
-                <Text style={styles.AddressTitle}>{address.number}</Text>
-                <Text style={styles.AddressTitle}>{address.type}</Text>
-                <Text style={styles.AddressDetail}>
-                  {address.street_address}
-                </Text>
+                <Pressable
+                  onPress={() => {
+                    setViewData(address);
+                    setViewVisible(true);
+                  }}
+                >
+                  <Text style={styles.AddressTitle}>{address.number}</Text>
+                  <Text style={styles.AddressTitle}>{address.type}</Text>
+                  <Text style={styles.AddressDetail}>
+                    {address.street_address}
+                  </Text>
+                </Pressable>
                 <View style={{ flexDirection: "row" }}>
                   <Text
                     style={styles.textStyle}

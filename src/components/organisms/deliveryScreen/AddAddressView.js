@@ -7,21 +7,19 @@ import {
   Dimensions,
   TouchableOpacity,
 } from "react-native";
-
 import { Dialog } from "react-native-simple-dialogs";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 import { RFValue } from "react-native-responsive-fontsize";
 import { COLORS, FONTS } from "../../../constants/theme";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { addAddress } from "../../../redux/actions/delivery";
 import { ActivityIndicator } from "react-native-paper";
 import { pincodeList } from "../../../api/static";
-
 import DropDownPicker from "react-native-dropdown-picker";
 
 const DeliverySchema = Yup.object().shape({
@@ -89,6 +87,18 @@ const AddAddressView = ({
         dialogStyle={{ backgroundColor: "white" }}
       >
         <View>
+          <Entypo
+            name="cross"
+            color={COLORS.primary}
+            size={hp("3.5%")}
+            style={{
+              position: "absolute",
+              right: 0,
+              top: hp("-6%"),
+              zIndex: 5,
+            }}
+            onPress={() => setDialogVisible(false)}
+          />
           <Formik
             initialValues={{
               addressType: "",

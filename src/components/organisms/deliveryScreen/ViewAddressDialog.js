@@ -4,6 +4,7 @@ import { Dialog } from "react-native-simple-dialogs";
 import { RFValue } from "react-native-responsive-fontsize";
 import { COLORS, FONTS } from "../../../constants/theme";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import Entypo from "react-native-vector-icons/Entypo";
 
 const ViewAddressDialog = ({ data, dialogVisible, setDialogVisible }) => {
   return (
@@ -13,6 +14,18 @@ const ViewAddressDialog = ({ data, dialogVisible, setDialogVisible }) => {
       onTouchOutside={() => setDialogVisible(false)}
     >
       <View>
+        <Entypo
+          name="cross"
+          color={COLORS.primary}
+          size={hp("3.5%")}
+          style={{
+            position: "absolute",
+            right: 0,
+            top: hp("-6%"),
+            zIndex: 5,
+          }}
+          onPress={() => setDialogVisible(false)}
+        />
         <TextInput
           style={styles.inputStyle}
           placeholder="Enter First Name"
