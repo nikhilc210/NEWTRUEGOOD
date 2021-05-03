@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Alert, Pressable } from "react-native";
-
 import BackHeader from "../../components/inc/BackHeader";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-
 import { COLORS, FONTS } from "../../constants/theme";
 import { RFValue } from "react-native-responsive-fontsize";
-import AddAddressView from "../../components/organisms/deliveryScreen/AddAddressView";
-
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
@@ -15,10 +11,11 @@ import {
   setActiveAddress,
   deleteAddress,
 } from "../../redux/actions/delivery";
-
 import { RadioButton } from "react-native-paper";
 import { useFocusEffect } from "@react-navigation/native";
 import ViewAddressDialog from "../../components/organisms/deliveryScreen/ViewAddressDialog";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import { navigate } from "../../navigations/RootNavigation";
 
 const DeliveryScreen = ({
   getAddress,
@@ -117,7 +114,21 @@ const DeliveryScreen = ({
           );
         })
       )}
-      <AddAddressView />
+      <Pressable
+        style={{
+          flexDirection: "row",
+        }}
+        onPress={() => navigate("AddAddressScreen")}
+      >
+        <AntDesign
+          name="plus"
+          color={COLORS.primary}
+          size={hp("4%")}
+          style={{ marginHorizontal: hp("1%") }}
+        />
+
+        <Text style={styles.textStyle}>Add new Address</Text>
+      </Pressable>
       <ViewAddressDialog
         data={viewData}
         dialogVisible={viewVisible}

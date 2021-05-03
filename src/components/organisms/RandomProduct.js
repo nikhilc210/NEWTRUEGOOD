@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { COLORS, FONTS } from "../../constants/theme";
 import { ActivityIndicator } from "react-native-paper";
-import { getRecommendedProducts } from "../../api/product";
+import { getRandomProducts } from "../../api/product";
 import ModifiedProductItem from "../atoms/ModifiedProductItem";
 
 const RandomProducts = () => {
@@ -16,7 +16,7 @@ const RandomProducts = () => {
 
     if (isMounted) {
       const getData = async () => {
-        let data = await getRecommendedProducts();
+        let data = await getRandomProducts();
         setProducts(data);
         setLoading(false);
       };
@@ -31,7 +31,6 @@ const RandomProducts = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleTextStyle}>Recommended Products</Text>
       <View style={styles.productContainer}>
         {loading ? (
           <ActivityIndicator color={COLORS.primary} />

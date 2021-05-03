@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import ProductLoader from "../../components/inc/ProductLoader";
 import FilterCategoryTabView from "../../components/organisms/productlistscreen/FilterCategoryTabView";
 import { ScrollView } from "react-native";
-import RecommendedProducts from "../../components/organisms/RecommendedProducts";
+import RandomProducts from "../../components/organisms/RandomProduct";
 
 const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
   return (
@@ -31,7 +31,7 @@ const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
         />
       ) : query.length < 3 ? (
         <ScrollView>
-          <RecommendedProducts />
+          <RandomProducts />
         </ScrollView>
       ) : (
         <Text>No Product found as per search</Text>

@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-community/async-storage';
-import axios from 'axios';
-import setAuthToken from '../../../utils/setAuthToken';
-import Toast from 'react-native-simple-toast'
+import AsyncStorage from "@react-native-community/async-storage";
+import axios from "axios";
+import setAuthToken from "../../../utils/setAuthToken";
+import Toast from "react-native-simple-toast";
 
 //API IMPORTS
-import {API_URL} from '../../constants/url';
+import { API_URL } from "../../constants/url";
 import {
   ADD_DELIVERY_ADDRESS_ERROR,
   ADD_DELIVERY_ADDRESS_REQUEST,
@@ -13,10 +13,11 @@ import {
   GET_DELIVERY_ADDRESS_ERROR,
   GET_DELIVERY_ADDRESS_SUCCESS,
   SET_ACTIVE_ADDRESS,
-} from '../types';
+} from "../types";
+import { goBack } from "../../navigations/RootNavigation";
 
 export const getAddress = () => async (dispatch) => {
-  let token = await AsyncStorage.getItem('TRUEGOOD:user_token');
+  let token = await AsyncStorage.getItem("TRUEGOOD:user_token");
   if (token) {
     setAuthToken(token);
   }
@@ -51,7 +52,7 @@ export const addAddress = (data) => async (dispatch, getState) => {
     type: ADD_DELIVERY_ADDRESS_REQUEST,
   });
 
-  let token = await AsyncStorage.getItem('TRUEGOOD:user_token');
+  let token = await AsyncStorage.getItem("TRUEGOOD:user_token");
   if (token) {
     setAuthToken(token);
   }
@@ -68,7 +69,7 @@ export const addAddress = (data) => async (dispatch, getState) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -88,13 +89,12 @@ export const addAddress = (data) => async (dispatch, getState) => {
     let addressData = await axios.post(
       `${API_URL}/customer/addAddress`,
       body,
-      config,
+      config
     );
 
-    Toast.show(
-      'The address has been added successfully !',
-      Toast.SHORT,
-    );
+    Toast.show("The address has been added successfully !", Toast.SHORT);
+
+    goBack();
 
     if (addressData.data.length === 1) {
       dispatch({
@@ -127,7 +127,7 @@ export const addAddress = (data) => async (dispatch, getState) => {
 };
 
 export const deleteAddress = (addressId) => async (dispatch, getState) => {
-  let token = await AsyncStorage.getItem('TRUEGOOD:user_token');
+  let token = await AsyncStorage.getItem("TRUEGOOD:user_token");
   if (token) {
     setAuthToken(token);
   }
@@ -145,10 +145,7 @@ export const deleteAddress = (addressId) => async (dispatch, getState) => {
       type: DELETE_DELIVERY_ADDRESS_SUCCESS,
       payload: addressId,
     });
-    Toast.show(
-      'The address has been deleted successfully !',
-      Toast.SHORT,
-    );
+    Toast.show("The address has been deleted successfully !", Toast.SHORT);
   } catch (err) {
     const errors = err?.response?.data?.errors;
     if (errors) {
