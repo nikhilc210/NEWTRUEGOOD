@@ -4,25 +4,26 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { COLORS, FONTS } from "../../constants/theme";
 import { ActivityIndicator } from "react-native-paper";
-import { getBestSellerProducts } from "../../api/product";
+import { getRecommendedProducts } from "../../api/product";
 import ModifiedProductItem from "../atoms/ModifiedProductItem";
 
-const BestSellerProducts = () => {
+const RandomProducts = () => {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     let isMounted = true;
 
-    const getData = async () => {
-      let data = await getBestSellerProducts();
-      if (isMounted) {
+    if (isMounted) {
+      const getData = async () => {
+        let data = await getRecommendedProducts();
         setProducts(data);
         setLoading(false);
-      }
-    };
+      };
 
-    getData();
+      getData();
+    }
+
     return () => {
       isMounted = false;
     };
@@ -30,7 +31,7 @@ const BestSellerProducts = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titleTextStyle}>Best Seller Products</Text>
+      <Text style={styles.titleTextStyle}>Recommended Products</Text>
       <View style={styles.productContainer}>
         {loading ? (
           <ActivityIndicator color={COLORS.primary} />
@@ -44,7 +45,7 @@ const BestSellerProducts = () => {
   );
 };
 
-export default BestSellerProducts;
+export default RandomProducts;
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8f9fa", paddingVertical: hp("2%") },

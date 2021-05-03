@@ -10,7 +10,6 @@ import OrderItemsView from "../../components/organisms/cartscreen/OrderItemsView
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import EmptyCartScreen from "../../components/organisms/cartscreen/EmptyCartScreen";
 import CheckOutView from "../../components/organisms/cartscreen/CheckOutView";
 import BestSellerProducts from "../../components/organisms/BestSellerProducts";
 import RecommendedProducts from "../../components/organisms/RecommendedProducts";

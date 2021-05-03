@@ -8,18 +8,25 @@ import { getRecommendedProducts } from "../../api/product";
 import ModifiedProductItem from "../atoms/ModifiedProductItem";
 
 const RecommendedProducts = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const getData = async () => {
-      let data = await getRecommendedProducts();
-      setProducts(data);
-      setLoading(false);
-    };
+    let isMounted = true;
 
-    setLoading(true);
-    getData();
+    if (isMounted) {
+      const getData = async () => {
+        let data = await getRecommendedProducts();
+        setProducts(data);
+        setLoading(false);
+      };
+
+      getData();
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   return (

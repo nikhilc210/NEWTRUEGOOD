@@ -16,11 +16,6 @@ export const searchProducts = (query) => async (dispatch) => {
     type: SEARCH_PRODUCTS_REQUEST,
   });
 
-  dispatch({
-    type: SET_QUERY,
-    payload: query,
-  });
-
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -58,5 +53,16 @@ export const resetSearch = () => async (dispatch) => {
   dispatch({
     type: SEARCH_PRODUCTS_SUCCESS,
     payload: [],
+  });
+  dispatch({
+    type: SET_QUERY,
+    payload: "",
+  });
+};
+
+export const setQuery = (query) => async (dispatch) => {
+  dispatch({
+    type: SET_QUERY,
+    payload: query,
   });
 };

@@ -4,7 +4,6 @@ import CategoryHeader from "../../components/inc/CategoryHeader";
 import SearchBarView from "../../components/inc/SearchBarView";
 import { FlatList } from "react-native-gesture-handler";
 import ModifiedProductItem from "../../components/atoms/ModifiedProductItem";
-
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -12,13 +11,12 @@ import ProductLoader from "../../components/inc/ProductLoader";
 import FilterCategoryTabView from "../../components/organisms/productlistscreen/FilterCategoryTabView";
 import { ScrollView } from "react-native";
 import RecommendedProducts from "../../components/organisms/RecommendedProducts";
-import BestSellerProducts from "../../components/organisms/BestSellerProducts";
 
 const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
   return (
     <View style={styles.container}>
       <CategoryHeader title="Search for Products" isSearch={true} />
-      <SearchBarView focused={true} query={query} />
+      <SearchBarView />
       <FilterCategoryTabView />
       {loading ? (
         <ProductLoader />
@@ -31,10 +29,9 @@ const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
             return <ModifiedProductItem item={item} />;
           }}
         />
-      ) : query === null ? (
+      ) : query.length < 3 ? (
         <ScrollView>
           <RecommendedProducts />
-          <BestSellerProducts />
         </ScrollView>
       ) : (
         <Text>No Product found as per search</Text>
@@ -48,7 +45,7 @@ SearchScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  searchData: state.search, //name of prop = alert
+  searchData: state.search,
 });
 
 export default connect(mapStateToProps, null)(SearchScreen);

@@ -6,17 +6,22 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { searchProducts, resetSearch } from "../../redux/actions/search";
+import {
+  searchProducts,
+  resetSearch,
+  setQuery,
+} from "../../redux/actions/search";
 
-const SearchBarView = ({ searchProducts, resetSearch, query = "" }) => {
-  const [searchQuery, setSearchQuery] = useState(query);
+const SearchBarView = ({ searchProducts, resetSearch, setQuery }) => {
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const onChangeSearch = (query) => {
-    if (query.length >= 3) {
+  const onChangeSearch = (data) => {
+    setSearchQuery(data);
+    setQuery(data);
+    if (searchQuery.length >= 2) {
       onSubmit();
-      setSearchQuery(query);
     } else {
-      setSearchQuery(query);
+      resetSearch();
     }
   };
 
@@ -25,8 +30,16 @@ const SearchBarView = ({ searchProducts, resetSearch, query = "" }) => {
   };
 
   useEffect(() => {
-    resetSearch();
-    setSearchQuery("");
+    let isMounted = false;
+
+    if (!isMounted) {
+      resetSearch();
+      setSearchQuery("");
+    }
+
+    return () => {
+      isMounted = true;
+    };
   }, []);
 
   return (
@@ -36,7 +49,6 @@ const SearchBarView = ({ searchProducts, resetSearch, query = "" }) => {
         onChangeText={onChangeSearch}
         autoFocus={true}
         value={searchQuery}
-        onSubmitEditing={onSubmit}
         icon={() => <MaterialIcons name={"search"} size={20} color={"#AAA"} />}
       />
     </View>
@@ -45,9 +57,12 @@ const SearchBarView = ({ searchProducts, resetSearch, query = "" }) => {
 SearchBarView.propTypes = {
   searchProducts: PropTypes.func.isRequired,
   resetSearch: PropTypes.func,
+  setQuery: PropTypes.func,
 };
 
-export default connect(null, { searchProducts, resetSearch })(SearchBarView);
+export default connect(null, { searchProducts, resetSearch, setQuery })(
+  SearchBarView
+);
 
 const styles = StyleSheet.create({
   container: {

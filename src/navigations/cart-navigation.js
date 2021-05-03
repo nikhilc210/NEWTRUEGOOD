@@ -1,20 +1,18 @@
-import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import * as React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import CartScreen from '../screens/HomeScreens/Cart';
-import DeliverySlot from '../screens/OrderScreens/DeliverySlot';
-import ProceedToPayScreen from '../screens/OrderScreens/ProceedToPayScreen';
+import CartScreen from "../screens/HomeScreens/Cart";
+import DeliverySlot from "../screens/OrderScreens/DeliverySlot";
+import ProceedToPayScreen from "../screens/OrderScreens/ProceedToPayScreen";
 
-import PaymentScreen from '../screens/DrawerScreens/PaymentScreen';
-import {Pressable} from 'react-native';
-import {navigate} from './RootNavigation';
+import PaymentScreen from "../screens/DrawerScreens/PaymentScreen";
+import SingleProductDetailScreen from "../screens/ProductScreens/SingleProductDetailScreen";
 
 const CartNavigatorOptions = {
   headerShown: false,
 };
 
 const CartStack = createStackNavigator();
-
 
 const CartNavigator = () => {
   return (
@@ -39,6 +37,13 @@ const CartNavigator = () => {
         component={PaymentScreen}
         options={CartNavigatorOptions}
       />
+
+      <CartStack.Screen
+        name="SingleProductDetailScreen"
+        options={CartNavigatorOptions}
+      >
+        {(props) => <SingleProductDetailScreen {...props} />}
+      </CartStack.Screen>
     </CartStack.Navigator>
   );
 };
