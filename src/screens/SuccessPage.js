@@ -1,28 +1,28 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, { useEffect } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect, useDispatch} from 'react-redux';
-import {createOrder} from '../../api';
-import {navigate} from '../navigations/RootNavigation';
-import {EMPTY_CART} from '../redux/types';
+import PropTypes from "prop-types";
+import { connect, useDispatch } from "react-redux";
+import { createOrder } from "../../api";
+import { navigate } from "../navigations/RootNavigation";
+import { EMPTY_CART } from "../redux/types";
 
-import {ActivityIndicator} from 'react-native-paper';
-import {COLORS} from '../constants/theme';
+import { ActivityIndicator } from "react-native-paper";
+import { COLORS } from "../constants/theme";
 
 const SuccessPage = ({
-  cartData: {items},
+  cartData: { items },
   deliveryData,
-  addressData: {activeAddress},
+  addressData: { activeAddress },
   route,
 }) => {
-  const {payment_mode, transaction_details} = route.params;
+  const { payment_mode, transaction_details } = route.params;
 
   const dispatch = useDispatch();
   useEffect(() => {
     const saveOrder = async () => {
-      let delivery_slot_data = deliveryData.date + ' ' + deliveryData.time;
+      let delivery_slot_data = deliveryData.date + " " + deliveryData.time;
       const sendData = {
         order_line: items,
         delivery_address_id: activeAddress._id,
@@ -39,9 +39,9 @@ const SuccessPage = ({
 
       //empty slot
       dispatch({
-        type: 'SLOT_RESET',
+        type: "SLOT_RESET",
       });
-      navigate('MyOrderNavigator', {screen: 'LiveOrderListScreen'});
+      navigate("MyOrderNavigator", { screen: "LiveOrderListScreen" });
     };
     saveOrder();
   }, []);
@@ -67,7 +67,7 @@ export default connect(mapStateToProps, null)(SuccessPage);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

@@ -21,12 +21,13 @@ export const createOrder = async (orderData) => {
     transaction_details,
   } = orderData;
 
-  const totalPrice = order_line.reduce(
+  const total_price = order_line.reduce(
     (acc, current) => acc + parseFloat(current.price * current.quantity),
     0
   );
 
-  const sendPrice = totalPrice > 900 ? totalPrice : totalPrice + 50;
+  const send_price = total_price > 900 ? total_price : total_price + 50;
+  const delivery_charge = total_price > 900 ? 50 : 0;
 
   const config = {
     headers: {
@@ -38,9 +39,10 @@ export const createOrder = async (orderData) => {
     order_line,
     delivery_address_id,
     delivery_slot,
-    order_total: sendPrice,
+    order_total: send_price,
     payment_mode,
     transaction_details: transaction_details ? transaction_details : {},
+    delivery_charge,
   };
 
   const body = JSON.stringify(sendData);
