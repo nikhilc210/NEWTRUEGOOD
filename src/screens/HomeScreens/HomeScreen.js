@@ -63,12 +63,12 @@ function HomeScren() {
           contentContainerStyle={styles.scrollContainer}
         >
           <ThinBanner />
-          <DealBanner />
           <ShopByCategoryView />
           <OzoneBanner />
-          <ExoticBanner />
           <MainOfferView />
+          <ExoticBanner />
           <RecommendedProducts />
+          <DealBanner />
           <BestSellerProducts />
           <Informative />
           <ShopByCategoryView />

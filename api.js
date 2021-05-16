@@ -50,7 +50,7 @@ export const createOrder = async (orderData) => {
   try {
     await axios.post(`${API_URL}/order/create`, body, config);
 
-    Toast.show("The order has been saved successfully !", Toast.SHORT);
+    alert("The order has been placed !");
     //ending
   } catch (err) {
     const errors = err?.response?.data?.errors;

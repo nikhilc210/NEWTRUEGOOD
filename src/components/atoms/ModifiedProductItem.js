@@ -311,7 +311,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderRadius: hp("0.5%"),
-    backgroundColor: COLORS.red,
+    backgroundColor: "#D3D3D3",
     elevation: 1,
   },
   backgroundStyle: {

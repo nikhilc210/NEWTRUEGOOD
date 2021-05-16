@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 //all the images import
-import { logo } from "../../constants/images";
+import { splashLogo } from "../../constants/images";
 
 //Required Imports
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -27,7 +27,7 @@ const SplashScreen = ({ loadUser }) => {
   }, []);
   return (
     <View style={styles.container}>
-      <Image source={logo} style={styles.logoStyle} />
+      <Image source={splashLogo} style={styles.logoStyle} />
       <View style={styles.bottomTextStyle}>
         <Text>
           Made in India{"  "}

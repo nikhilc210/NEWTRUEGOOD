@@ -20,6 +20,7 @@ import { connect } from "react-redux";
 import { addAddress } from "../../redux/actions/delivery";
 import { ActivityIndicator } from "react-native-paper";
 import { pincodeList } from "../../api/static";
+import { Picker } from "@react-native-picker/picker";
 import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native";
 
@@ -38,6 +39,7 @@ const AddAddressScreen = ({
   deliveryData: { addDeliveryLoading },
 }) => {
   const [pincodes, setPincodes] = useState([]);
+
   let names = [];
   names = user?.name ? user?.name?.split(" ") : [];
 
@@ -128,14 +130,21 @@ const AddAddressScreen = ({
                   {errors.number && touched.number ? (
                     <Text style={styles.errorStyle}>{errors.number}</Text>
                   ) : null}
-                  <TextInput
-                    style={styles.inputStyle}
-                    placeholder="Enter Address Type"
-                    onChangeText={handleChange("addressType")}
-                    onBlur={handleBlur("addressType")}
-                    value={values.addressType}
-                    underlineColorAndroid="transparent"
-                  />
+                  <View style={styles.dropDownStyle}>
+                    <Picker
+                      selectedValue={values?.addressType}
+                      style={{
+                        height: hp("6%"),
+                        width: Dimensions.get("window").width - 40,
+                      }}
+                      onValueChange={(itemValue) =>
+                        setFieldValue("addressType", itemValue, true)
+                      }
+                    >
+                      <Picker.Item label="Home" value="Home" />
+                      <Picker.Item label="Office" value="Office" />
+                    </Picker>
+                  </View>
                   {errors.addressType && touched.addressType ? (
                     <Text style={styles.errorStyle}>{errors.addressType}</Text>
                   ) : null}
@@ -155,26 +164,28 @@ const AddAddressScreen = ({
                     </Text>
                   ) : null}
 
-                  <DropDownPicker
-                    items={pincodes}
-                    placeholder="Select pincode"
-                    containerStyle={{
-                      marginTop: hp("2%"),
-                      height: hp("6%"),
-                      zIndex: 10,
-                    }}
-                    style={{
-                      backgroundColor: "white",
-                      borderColor: COLORS.textGrey,
-                    }}
-                    itemStyle={{
-                      justifyContent: "flex-start",
-                    }}
-                    dropDownStyle={{ backgroundColor: "#fafafa" }}
-                    onChangeItem={(item) =>
-                      setFieldValue("pincode", item.value, true)
-                    }
-                  />
+                  <View style={styles.dropDownStyle}>
+                    <Picker
+                      selectedValue={values?.addressType}
+                      style={{
+                        height: hp("6%"),
+                        width: Dimensions.get("window").width - 40,
+                      }}
+                      onValueChange={(itemValue) =>
+                        setFieldValue("addressType", itemValue, true)
+                      }
+                    >
+                      {pincodes?.map((pincode) => (
+                        <Picker.Item
+                          placeholder="Select Pincode"
+                          key={pincode.value}
+                          label={pincode.label}
+                          value={pincode.value}
+                          disabled={pincode.disabled}
+                        />
+                      ))}
+                    </Picker>
+                  </View>
 
                   {errors.pincode && touched.pincode ? (
                     <Text style={styles.errorStyle}>{errors.pincode}</Text>
@@ -270,5 +281,13 @@ const styles = StyleSheet.create({
     fontSize: RFValue(8),
     fontFamily: FONTS.primaryFONT,
     color: "red",
+  },
+  dropDownStyle: {
+    marginTop: hp("2%"),
+    height: hp("6%"),
+    borderWidth: 1,
+    borderColor: COLORS.textGrey,
+    borderRadius: hp("0.8%"),
+    width: Dimensions.get("window").width - 40,
   },
 });
