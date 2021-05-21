@@ -5,7 +5,6 @@ import { API_URL } from "./src/constants/url";
 import AsyncStorage from "@react-native-community/async-storage";
 import Snackbar from "react-native-snackbar";
 import { navigate } from "./src/navigations/RootNavigation";
-import Toast from "react-native-simple-toast";
 
 export const createOrder = async (orderData) => {
   let token = await AsyncStorage.getItem("TRUEGOOD:user_token");
@@ -27,7 +26,7 @@ export const createOrder = async (orderData) => {
   );
 
   const send_price = total_price > 700 ? total_price : total_price + 50;
-  const delivery_charge = total_price > 700 ? 50 : 0;
+  const delivery_charge = total_price > 700 ? 0 : 50;
 
   const config = {
     headers: {

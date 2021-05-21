@@ -4,8 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5794506671dc655d8984ff2980f665a7/soloader-0.8.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/48f144b5ca95717b86e929b3938f09f8/soloader-0.8.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c4fb7d78d768e499da0aa220b2297f1c/soloader-0.8.2/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c4fb7d78d768e499da0aa220b2297f1c/soloader-0.8.2/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c4fb7d78d768e499da0aa220b2297f1c/soloader-0.8.2/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/10049b8f7c000c59d2baa75af82aa4e7/soloader-0.8.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/10049b8f7c000c59d2baa75af82aa4e7/soloader-0.8.2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/10049b8f7c000c59d2baa75af82aa4e7/soloader-0.8.2/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.soloader/soloader/0.8.2/92501cba1ab612533b3cbdba021bb357658814e9/soloader-0.8.2-javadoc.jar!/" />

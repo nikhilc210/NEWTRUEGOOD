@@ -185,7 +185,7 @@ dependencies {
 
     implementation(project(":react-native-google-signin"))
 
-
+    implementation 'com.android.support:multidex:2.0.1'
 
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
