@@ -10,8 +10,6 @@ import { COLORS } from "./src/constants/theme";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { store, persistor } from "./src/redux/store";
-import { useNetInfo } from "@react-native-community/netinfo";
-import NoInternet from "./src/components/inc/NoInternet";
 
 const theme = {
   ...DefaultTheme,
@@ -22,16 +20,6 @@ const theme = {
 };
 
 const App = () => {
-  const netInfo = useNetInfo();
-
-  if (!netInfo) {
-    return null;
-  }
-
-  if (!(netInfo.isConnected && netInfo.isInternetReachable)) {
-    return <NoInternet />;
-  }
-
   return (
     <PaperProvider theme={theme}>
       <Provider store={store}>

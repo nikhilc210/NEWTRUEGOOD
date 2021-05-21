@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LottieView from "lottie-react-native";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Button } from "react-native-paper";
@@ -6,6 +6,20 @@ import Snackbar from "react-native-snackbar";
 
 const NoInternet = () => {
   const [loading, setLoading] = useState(false);
+  const [initialLoad, setInitialLoad] = useState(true);
+
+  useEffect(() => {
+    let mounted = true;
+    setTimeout(() => {
+      if (mounted) {
+        setInitialLoad(false);
+      }
+    }, 1000);
+
+    return function cleanup() {
+      mounted = false;
+    };
+  }, [initialLoad]);
 
   const onRefresh = () => {
     setLoading(true);
@@ -18,6 +32,10 @@ const NoInternet = () => {
       });
     }, 2000);
   };
+
+  if (initialLoad) {
+    return null;
+  }
 
   return (
     <>

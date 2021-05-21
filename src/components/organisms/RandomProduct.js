@@ -14,17 +14,17 @@ const RandomProducts = () => {
   useEffect(() => {
     let isMounted = true;
 
-    if (isMounted) {
-      const getData = async () => {
-        let data = await getRandomProducts();
+    const getData = async () => {
+      let data = await getRandomProducts();
+      if (isMounted) {
         setProducts(data);
         setLoading(false);
-      };
+      }
+    };
 
-      getData();
-    }
+    getData();
 
-    return () => {
+    return function cleanup() {
       isMounted = false;
     };
   }, []);

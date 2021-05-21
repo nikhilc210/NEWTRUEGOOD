@@ -16,6 +16,7 @@ import ProfileScreen from "../screens/DrawerScreens/ProfileScreen";
 import OTPVerifyScreen from "../screens/DrawerScreens/OTPVerifyScreen";
 import OurProcess from "../screens/DrawerScreens/OurProcess";
 import AddAddressScreen from "../screens/DrawerScreens/AddAddressScreen";
+import HomeNavigator from "./home-navigation";
 //
 const Drawer = createDrawerNavigator();
 

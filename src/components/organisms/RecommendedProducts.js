@@ -14,17 +14,17 @@ const RecommendedProducts = () => {
   useEffect(() => {
     let isMounted = true;
 
-    if (isMounted) {
-      const getData = async () => {
-        let data = await getRecommendedProducts();
+    const getData = async () => {
+      let data = await getRecommendedProducts();
+      if (isMounted) {
         setProducts(data);
         setLoading(false);
-      };
+      }
+    };
 
-      getData();
-    }
+    getData();
 
-    return () => {
+    return function cleanup() {
       isMounted = false;
     };
   }, []);

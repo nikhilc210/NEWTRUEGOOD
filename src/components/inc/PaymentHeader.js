@@ -7,7 +7,7 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 const PaymentHeader = () => {
   const onBackPress = () => {
-    navigate("Home");
+    navigate("TabNavigator", { screen: "Home" });
   };
 
   return (

@@ -23,7 +23,8 @@ const BestSellerProducts = () => {
     };
 
     getData();
-    return () => {
+
+    return function cleanup() {
       isMounted = false;
     };
   }, []);

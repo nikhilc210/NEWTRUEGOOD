@@ -16,6 +16,7 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       backBehavior="initialRoute"
+      initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color, size, focused }) => {
           if (route.name === "Home") {
