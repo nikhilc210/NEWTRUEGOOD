@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import CategoryHeader from "../../components/inc/CategoryHeader";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -33,6 +33,17 @@ const CartScreen = ({ cartData: { items } }) => {
                 }}
               >
                 <OrderDetailBillingView />
+              </View>
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  marginBottom: hp("2%"),
+                  padding: hp("2%"),
+                  marginTop: hp("2%"),
+                }}
+              >
+                <Text style={styles.titleTextStyle}>Note:</Text>
+                <Text>Free Delivery on order above Rs 700/-</Text>
               </View>
             </ScrollView>
           </View>
@@ -72,12 +83,6 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontFamily: FONTS.primaryFONT,
   },
-  headerText: {
-    textAlign: "left",
-    paddingHorizontal: hp("1%"),
-    flex: 1,
-    fontSize: RFValue(12),
-  },
   buttonTextStyle: {
     fontSize: RFValue(16),
     color: COLORS.primary,
@@ -89,5 +94,9 @@ const styles = StyleSheet.create({
     padding: hp("2%"),
     alignItems: "center",
     justifyContent: "center",
+  },
+  titleTextStyle: {
+    fontSize: RFValue(14),
+    color: COLORS.primary,
   },
 });

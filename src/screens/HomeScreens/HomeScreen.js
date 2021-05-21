@@ -18,7 +18,6 @@ import HomeHeader from "../../components/inc/HomeHeader";
 import DealBanner from "../../components/organisms/homescreen/DealBanner";
 import ShopByCategoryView from "../../components/organisms/homescreen/ShopByCategoryView";
 import BottomSheet from "../AuthScreens/BottomSheet";
-import OTPBottomSheet from "../AuthScreens/OTPBottomSheet";
 import DeliverySlot from "../../components/organisms/homescreen/DeliverySlot";
 import ThinBanner from "../../components/organisms/homescreen/ThinBanner";
 import OzoneBanner from "../../components/organisms/homescreen/OzoneBanner";
@@ -93,7 +92,6 @@ function HomeScren() {
       </Pressable>
       <RegisterSheet />
       <BottomSheet />
-      <OTPBottomSheet />
       <MobileBottomSheet />
       <LoginOTPSheet />
       <RegisterOTPSheet />

@@ -14,7 +14,6 @@ import ProductLoader from "../../components/inc/ProductLoader";
 //sheet imports
 import BottomSheet from "../AuthScreens/BottomSheet";
 import RegisterSheet from "../AuthScreens/RegisterSheet";
-import OTPBottomSheet from "../AuthScreens/OTPBottomSheet";
 import MobileBottomSheet from "../AuthScreens/MobileBottomSheet";
 import LoginOTPSheet from "../AuthScreens/LoginOTPSheet";
 import RegisterOTPSheet from "../AuthScreens/RegisterOTPSheet";
@@ -46,7 +45,6 @@ const OffersScreen = ({
           />
           <BottomSheet />
           <RegisterSheet />
-          <OTPBottomSheet />
           <MobileBottomSheet />
           <LoginOTPSheet />
           <RegisterOTPSheet />

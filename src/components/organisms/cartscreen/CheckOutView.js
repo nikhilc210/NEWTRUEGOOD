@@ -14,7 +14,6 @@ import RegisterOTPSheet from "../../../screens/AuthScreens/RegisterOTPSheet";
 import RegisterSheet from "../../../screens/AuthScreens/RegisterSheet";
 import MobileBottomSheet from "../../../screens/AuthScreens/MobileBottomSheet";
 import LoginOTPSheet from "../../../screens/AuthScreens/LoginOTPSheet";
-import OTPBottomSheet from "../../../screens/AuthScreens/OTPBottomSheet";
 import Toast from "react-native-simple-toast";
 
 const CheckOutView = ({
@@ -59,7 +58,7 @@ const CheckOutView = ({
     <View style={styles.checkOutPage}>
       <View style={styles.viewStyle}>
         <Text style={{ fontSize: RFValue(14), fontWeight: "bold" }}>
-          Total : Rs. {total > 900 ? total : total + 50}
+          Total : Rs. {total > 700 ? total : total + 50}
           /-
         </Text>
       </View>
@@ -74,7 +73,6 @@ const CheckOutView = ({
       </View>
       <BottomSheet />
       <RegisterSheet />
-      <OTPBottomSheet />
       <MobileBottomSheet />
       <LoginOTPSheet />
       <RegisterOTPSheet />

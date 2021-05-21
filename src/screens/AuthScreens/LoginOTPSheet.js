@@ -61,7 +61,7 @@ function LoginOTPSheet({
     <RBSheet
       ref={rbSheet}
       closeOnDragDown={true}
-      height={hp(48)}
+      height={hp(35)}
       customStyles={{
         container: {
           justifyContent: "center",
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "white",
     backgroundColor: "white",
+    justifyContent: "center",
   },
 
   signInTextStyle: {

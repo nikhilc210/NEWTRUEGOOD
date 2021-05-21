@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, ToastAndroid } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 import { Button } from "react-native-paper";
 
@@ -48,7 +48,7 @@ const ProceedToPayView = ({
           if (total >= minimum) {
             if (mode === "online") {
               navigate("PaymentNavigator", {
-                TotalAmount: total > 900 ? total : total + 50,
+                TotalAmount: total > 700 ? total : total + 50,
               });
             } else {
               navigate("SuccessPage", {
@@ -73,7 +73,7 @@ const ProceedToPayView = ({
     <View style={styles.checkOutPage}>
       <View style={styles.viewStyle}>
         <Text style={{ fontSize: RFValue(14), fontWeight: "bold" }}>
-          Total : Rs. {total > 900 ? total : total + 50}
+          Total : Rs. {total > 700 ? total : total + 50}
           /-
         </Text>
       </View>

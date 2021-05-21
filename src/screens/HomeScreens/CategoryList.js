@@ -18,7 +18,6 @@ import { setActiveCategory } from "../../redux/actions/category";
 //Bottom sheet import
 import BottomSheet from "../AuthScreens/BottomSheet";
 import RegisterSheet from "../AuthScreens/RegisterSheet";
-import OTPBottomSheet from "../AuthScreens/OTPBottomSheet";
 import MobileBottomSheet from "../AuthScreens/MobileBottomSheet";
 import LoginOTPSheet from "../AuthScreens/LoginOTPSheet";
 import RegisterOTPSheet from "../AuthScreens/RegisterOTPSheet";
@@ -62,7 +61,6 @@ const CategoryList = ({ categoryData: { categories }, setActiveCategory }) => {
       </ScrollView>
       <BottomSheet />
       <RegisterSheet />
-      <OTPBottomSheet />
       <MobileBottomSheet />
       <LoginOTPSheet />
       <RegisterOTPSheet />

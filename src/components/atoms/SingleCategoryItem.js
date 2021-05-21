@@ -26,16 +26,16 @@ export default SingleCategoryItem;
 const styles = StyleSheet.create({
   wrapper: { width: wp("20%"), marginTop: hp("1%") },
   container: {
-    height: wp("20%"),
-    width: wp("20%"),
-    borderRadius: wp("10%"),
+    height: wp("22%"),
+    width: wp("22%"),
+    borderRadius: wp("15%"),
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
   },
-  imageStyle: { height: wp("15%"), width: wp("15%"), borderRadius: wp("10%") },
+  imageStyle: { height: wp("20%"), width: wp("20%"), borderRadius: wp("15%") },
   categoryNameTextStyle: {
-    fontSize: RFValue(13),
+    fontSize: RFValue(10),
     fontFamily: FONTS.primaryFONT,
     color: COLORS.black,
     textAlign: "center",

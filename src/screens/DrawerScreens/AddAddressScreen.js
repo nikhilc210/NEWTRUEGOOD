@@ -21,7 +21,6 @@ import { addAddress } from "../../redux/actions/delivery";
 import { ActivityIndicator } from "react-native-paper";
 import { pincodeList } from "../../api/static";
 import { Picker } from "@react-native-picker/picker";
-import DropDownPicker from "react-native-dropdown-picker";
 import { ScrollView } from "react-native";
 
 const DeliverySchema = Yup.object().shape({
@@ -166,13 +165,13 @@ const AddAddressScreen = ({
 
                   <View style={styles.dropDownStyle}>
                     <Picker
-                      selectedValue={values?.addressType}
+                      selectedValue={values?.pincode}
                       style={{
                         height: hp("6%"),
                         width: Dimensions.get("window").width - 40,
                       }}
                       onValueChange={(itemValue) =>
-                        setFieldValue("addressType", itemValue, true)
+                        setFieldValue("pincode", itemValue, true)
                       }
                     >
                       {pincodes?.map((pincode) => (

@@ -1,27 +1,28 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
 
-import DeliveryAddressView from '../../components/organisms/cartscreen/DeliveryAddressView';
-import CategoryHeader from '../../components/inc/CategoryHeader';
-import ProceedToPayView from '../../components/organisms/cartscreen/ProceedToPayView';
-import ApplyCoupon from '../../components/organisms/orderscreen/ApplyCoupon';
-import DeliverySlot from '../../components/organisms/homescreen/DeliverySlot';
+import DeliveryAddressView from "../../components/organisms/cartscreen/DeliveryAddressView";
+import CategoryHeader from "../../components/inc/CategoryHeader";
+import ProceedToPayView from "../../components/organisms/cartscreen/ProceedToPayView";
+import ApplyCoupon from "../../components/organisms/orderscreen/ApplyCoupon";
+import DeliverySlot from "../../components/organisms/homescreen/DeliverySlot";
 
 //React Native Paper
-import {RadioButton} from 'react-native-paper';
-import {COLORS} from '../../constants/theme';
+import { RadioButton } from "react-native-paper";
+import { COLORS } from "../../constants/theme";
 
 const ProceedToPayScreen = () => {
-  const [value, setValue] = useState('online');
+  const [value, setValue] = useState("online");
   return (
     <View style={styles.container}>
       <CategoryHeader isSearch={true} />
-      <DeliverySlot />
+      <DeliverySlot isCartPage={true} />
       <ApplyCoupon />
       <DeliveryAddressView />
       <RadioButton.Group
         onValueChange={(newValue) => setValue(newValue)}
-        value={value}>
+        value={value}
+      >
         {/*Online payment Radio Button*/}
         <RadioButton.Item
           label="Online Payment"

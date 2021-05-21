@@ -74,6 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     color: "white",
     backgroundColor: "white",
+    justifyContent: "center",
   },
 
   signInTextStyle: {

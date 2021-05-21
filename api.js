@@ -26,8 +26,8 @@ export const createOrder = async (orderData) => {
     0
   );
 
-  const send_price = total_price > 900 ? total_price : total_price + 50;
-  const delivery_charge = total_price > 900 ? 50 : 0;
+  const send_price = total_price > 700 ? total_price : total_price + 50;
+  const delivery_charge = total_price > 700 ? 50 : 0;
 
   const config = {
     headers: {
