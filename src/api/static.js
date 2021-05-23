@@ -47,6 +47,19 @@ export const ourProcess = async () => {
   }
 };
 
+export const fetchFAQs = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/static/getValue`, config);
+
+    return response.data.faqs;
+  } catch (error) {
+    Alert.alert(
+      "UnExpected Error Occured",
+      "Unexpected Error Occured. Please try again!"
+    );
+  }
+};
+
 export const pincodeList = async () => {
   try {
     const response = await axios.get(`${API_URL}/pincode/list`, config);

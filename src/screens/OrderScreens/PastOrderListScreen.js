@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 //Required Imports
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -27,9 +27,17 @@ const PastOrderListScreen = ({
         <ProductLoader />
       ) : (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {pastOrders?.map((order) => (
-            <PastOrderListItem item={order} key={order._id} />
-          ))}
+          {pastOrders?.length > 0 ? (
+            pastOrders?.map((order) => (
+              <PastOrderListItem item={order} key={order._id} />
+            ))
+          ) : (
+            <View>
+              <Text style={{ textAlign: "center", marginTop: hp("35%") }}>
+                You have no orders yet! Order now with TrueGood 😀
+              </Text>
+            </View>
+          )}
         </ScrollView>
       )}
     </View>

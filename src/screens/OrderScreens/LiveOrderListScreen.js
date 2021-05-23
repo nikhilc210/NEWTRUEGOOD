@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 //Required Imports
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
@@ -26,10 +26,18 @@ const LiveOrderListScreen = ({
       {liveOrderLoading ? (
         <ProductLoader />
       ) : (
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {liveOrders?.map((order) => (
-            <LiveOrderListItem item={order} key={order._id} />
-          ))}
+        <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
+          {liveOrders?.length > 0 ? (
+            liveOrders?.map((order) => (
+              <LiveOrderListItem item={order} key={order._id} />
+            ))
+          ) : (
+            <View>
+              <Text style={{ textAlign: "center", marginTop: hp("35%") }}>
+                You have no orders yet! Order now with TrueGood 😀
+              </Text>
+            </View>
+          )}
         </ScrollView>
       )}
     </View>

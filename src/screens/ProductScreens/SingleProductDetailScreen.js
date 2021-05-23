@@ -40,6 +40,8 @@ const SingleProductDetailScreen = ({
       description,
       item_stock,
       ratings = [],
+      isOffer,
+      offer_price,
     },
     singleProductLoading,
   },
@@ -57,7 +59,9 @@ const SingleProductDetailScreen = ({
     getData();
   }, []);
 
-  let newPrice = Math.round(price - (discount / 100) * price);
+  let newPrice = isOffer
+    ? offer_price
+    : Math.round(price - (discount / 100) * price);
 
   const qty = items.find((item) => item.id === _id)
     ? items.find((item) => item.id === _id).quantity
@@ -163,9 +167,15 @@ const SingleProductDetailScreen = ({
                           addToCartFunction();
                         }
                       }}
-                      style={styles.addContainer}
+                      style={[
+                        styles.addContainer,
+                        {
+                          backgroundColor:
+                            item_stock > 0 ? COLORS.primary : "#D3D3D3",
+                        },
+                      ]}
                     >
-                      ADD
+                      {item_stock > 0 ? "ADD" : "Sold Out"}
                     </Button>
                   </View>
                 )}

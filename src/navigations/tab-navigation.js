@@ -3,12 +3,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import HomeNavigator from "./home-navigation";
-import OffersScreen from "../screens/HomeScreens/Offers";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { Image } from "react-native";
 import CartNumber from "../components/atoms/CartNumber";
 import CartNavigator from "./cart-navigation";
 import SearchNavigator from "./search-navigation";
+import OfferNavigator from "./offer-navigation";
 
 const Tab = createBottomTabNavigator();
 
@@ -82,7 +82,7 @@ const TabNavigator = () => {
       />
       <Tab.Screen
         name="Offers"
-        component={OffersScreen}
+        component={OfferNavigator}
         options={{ unmountOnBlur: true }}
       />
       <Tab.Screen

@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  useWindowDimensions,
-  ActivityIndicator,
-} from "react-native";
+import React from "react";
+import { View, StyleSheet, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import BackHeader from "../../components/inc/BackHeader";
 
-import HTML from "react-native-render-html";
-import { ourProcess } from "../../api/static";
+//images imports
+import {
+  process1,
+  process2,
+  process3,
+  process4,
+  process5,
+  process6,
+  process7,
+} from "../../constants/images";
 
 const OurProcess = () => {
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState("");
-
-  useEffect(() => {
-    const loadData = async () => {
-      let data = await ourProcess();
-      setData(data || "No Data Available");
-      setLoading(false);
-    };
-
-    loadData();
-  }, []);
-
-  const contentWidth = useWindowDimensions().width;
-
   return (
     <View style={styles.container}>
       <BackHeader title="Our Process" />
       <ScrollView>
-        {loading ? (
-          <ActivityIndicator color="green" size="large" />
-        ) : (
-          <HTML source={{ html: data }} contentWidth={contentWidth} />
-        )}
+        <Image source={process1} style={styles.imageStyle} />
+        <Image source={process2} style={styles.imageStyle} />
+        <Image source={process3} style={styles.imageStyle} />
+        <Image source={process4} style={styles.imageStyle} />
+        <Image source={process5} style={styles.imageStyle} />
+        <Image source={process6} style={styles.imageStyle} />
+        <Image source={process7} style={styles.imageStyle} />
       </ScrollView>
     </View>
   );

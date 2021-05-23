@@ -39,11 +39,21 @@ const CartScreen = ({ cartData: { items } }) => {
                   backgroundColor: "#fff",
                   marginBottom: hp("2%"),
                   padding: hp("2%"),
-                  marginTop: hp("2%"),
                 }}
               >
                 <Text style={styles.titleTextStyle}>Note:</Text>
                 <Text>Free Delivery on order above Rs 700/-</Text>
+              </View>
+
+              <View
+                style={{
+                  backgroundColor: "#fff",
+                  marginBottom: hp("2%"),
+                  padding: hp("2%"),
+                }}
+              >
+                <Text style={styles.titleTextStyle}>Covid 19:</Text>
+                <Text>We adhere to all safety measure and precautions</Text>
               </View>
             </ScrollView>
           </View>

@@ -1,8 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-
 import DeliverySlotTopTabNavigator from "../../navigations/delivery-slot-top-tab-navigation";
 import BackHeader from "../../components/inc/BackHeader";
 import { TouchableOpacity } from "react-native-gesture-handler";

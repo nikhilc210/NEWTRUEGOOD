@@ -189,6 +189,11 @@ const AddAddressScreen = ({
                   {errors.pincode && touched.pincode ? (
                     <Text style={styles.errorStyle}>{errors.pincode}</Text>
                   ) : null}
+
+                  <Text style={{ fontSize: RFValue(12) }}>
+                    If your Pin code is not here, we are working hard to Serve
+                    you soon!
+                  </Text>
                   <TextInput
                     style={styles.inputStyle}
                     placeholder="Enter City"
