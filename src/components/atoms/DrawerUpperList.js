@@ -41,7 +41,7 @@ const DrawerUpperList = ({ LogOut }) => {
         <Text style={styles.titleTextStyle}>Delivery Address</Text>
         <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
       </TouchableOpacity>
-      <TouchableOpacity
+      {/* <TouchableOpacity
         style={styles.singleListViewStyle}
         onPress={() => navigate("InviteFriendNavigator")}
       >
@@ -54,7 +54,7 @@ const DrawerUpperList = ({ LogOut }) => {
       >
         <Text style={styles.titleTextStyle}>Notifications</Text>
         <FontAwesome name="angle-right" size={hp("3%")} color={COLORS.black} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.singleListViewStyle}

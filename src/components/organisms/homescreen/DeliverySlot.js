@@ -32,7 +32,10 @@ const DeliverySlot = ({ isCartPage = false }) => {
             paddingLeft: hp(2),
           }}
         >
-          <Button mode="contained">
+          <Button
+            mode="outlined"
+            style={{ borderColor: COLORS.primary, borderWidth: 1 }}
+          >
             {deliverySlot.time} {"   "}
             {deliverySlot.date}
           </Button>

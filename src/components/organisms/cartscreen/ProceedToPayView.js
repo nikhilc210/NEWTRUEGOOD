@@ -40,7 +40,7 @@ const ProceedToPayView = ({
     if (isAuthenticated) {
       //MORE LOGIC TO BE IMPLEMENTED
       if (date === "Select a Delivery Slot") {
-        Toast.show("Please select the delivery date !", Toast.SHORT);
+        Toast.show("Please select the delivery time !", Toast.SHORT);
       } else {
         if (activeAddress === null) {
           Toast.show("Please select the delivery address !", Toast.SHORT);
