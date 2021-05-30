@@ -1,4 +1,4 @@
-package com.truegood;
+package in.truegood;
 
 import android.app.Application;
 import android.content.Context;
@@ -59,7 +59,7 @@ public class MainApplication extends Application implements ReactApplication {
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
 
 //      try {
-//              PackageInfo info = getPackageManager().getPackageInfo("com.truegood", PackageManager.GET_SIGNATURES);
+//              PackageInfo info = getPackageManager().getPackageInfo("in.truegood", PackageManager.GET_SIGNATURES);
 //              for (Signature signature : info.signatures) {
 //                  MessageDigest md = MessageDigest.getInstance("SHA");
 //                  md.update(signature.toByteArray());
@@ -91,7 +91,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.truegood.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("in.truegood.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

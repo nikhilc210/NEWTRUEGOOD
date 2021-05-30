@@ -1,4 +1,4 @@
-package com.truegood;
+package in.truegood;
 
 import com.facebook.react.ReactActivity;
 
