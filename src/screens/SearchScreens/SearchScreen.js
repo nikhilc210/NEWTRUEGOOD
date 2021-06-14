@@ -13,14 +13,22 @@ import { ScrollView } from "react-native";
 import RandomProducts from "../../components/organisms/RandomProduct";
 
 const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
-  return (
-    <View style={styles.container}>
-      <CategoryHeader title="Search for Products" isSearch={true} />
-      <SearchBarView />
-      <FilterCategoryTabView />
-      {loading ? (
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <CategoryHeader title="Search for Products" isSearch={true} />
+        <SearchBarView />
         <ProductLoader />
-      ) : filterProducts.length > 0 ? (
+      </View>
+    );
+  }
+
+  if (filterProducts.length > 0) {
+    return (
+      <View style={styles.container}>
+        <CategoryHeader title="Search for Products" isSearch={true} />
+        <SearchBarView />
+        <FilterCategoryTabView />
         <FlatList
           data={filterProducts}
           keyExtractor={(item) => item._id}
@@ -29,13 +37,28 @@ const SearchScreen = ({ searchData: { filterProducts, loading, query } }) => {
             return <ModifiedProductItem item={item} />;
           }}
         />
-      ) : query.length < 3 ? (
+      </View>
+    );
+  }
+
+  if (query.length < 3) {
+    return (
+      <View style={styles.container}>
+        <CategoryHeader title="Search for Products" isSearch={true} />
+        <SearchBarView />
         <ScrollView>
           <RandomProducts />
         </ScrollView>
-      ) : (
-        <Text>No Product found as per search</Text>
-      )}
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      <CategoryHeader title="Search for Products" isSearch={true} />
+      <SearchBarView />
+      <FilterCategoryTabView />
+      <Text>No Product found as per search</Text>
     </View>
   );
 };

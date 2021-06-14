@@ -6367,6 +6367,11 @@ react-native-paper@^4.2.0:
     color "^3.1.2"
     react-native-safe-area-view "^0.14.9"
 
+react-native-pg-react-native-sdk@^2.1.5:
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/react-native-pg-react-native-sdk/-/react-native-pg-react-native-sdk-2.1.5.tgz#2526fbe7a95020c976297025b8e7addcde190a5c"
+  integrity sha512-hNUFLcBuNsjbqB2eO2G/ych7qR4hUsFcZVyZ3u36UUsUjJWQZTsh6xi8SDy4dtFfzzxGrlGfMoMfYtlOpidpdA==
+
 react-native-ratings@^7.3.0:
   version "7.3.0"
   resolved "https://registry.npmjs.org/react-native-ratings/-/react-native-ratings-7.3.0.tgz"

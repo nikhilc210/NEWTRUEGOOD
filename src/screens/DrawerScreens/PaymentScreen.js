@@ -1,156 +1,153 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import CashfreePG from "cashfreereactnativepg";
-import base64 from "base-64";
+import { Button, View } from "react-native";
+import RNPgReactNativeSdk from "react-native-pg-react-native-sdk";
+import { StyleSheet } from "react-native";
 import { navigate } from "../../navigations/RootNavigation";
+
+const WEB = "WEB";
+
+const apiKey = "7712709705bb72f5dce87100972177"; // put your apiKey here
+const apiSecret = "2e8cba087905ce989e424c485f0f5402f83aac41"; // put your apiSecret here
+
+const env = "PROD"; // use 'TEST or 'PROD'
 
 export default class PaymentScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cftoken: "",
-      urlCalled: null,
-      urlResponse: {},
-      testData: null,
-      eventData: null,
-      count: 0,
-      modifyOrder: false,
+      totalAmount: 0,
     };
   }
 
   componentDidMount() {
     const { TotalAmount } = this.props.route.params;
     this.setState({
-      order: {
-        appId: "32528e2b87b06b476ae6982dc82523",
-        //appId: 'MTA2OTkyMDE1ODE0NDIyNTExNjYjIz',
-        orderId: Math.floor(Math.random() * 10000).toString(),
-        orderAmount: `${TotalAmount}`,
-        orderCurrency: "INR",
-        orderNote: "This is an order note",
-        source: "reactsdk",
-        customerName: "John",
-        customerEmail: "abc@email.com",
-        customerPhone: "1234561234",
-        notifyUrl: "",
-        paymentModes: "",
-        env: "TEST",
-        tokenData: "",
-      },
+      totalAmount: TotalAmount,
     });
 
     setTimeout(() => {
-      this.getToken();
-    }, 1000);
+      this._startCheckout(WEB, null);
+    }, 500);
   }
 
-  componentDidUpdate() {
-    if (this.state.modifyOrder) {
-      this.getToken();
+  async _createOrderWithToken() {
+    let orderId;
+    let tokenUrl;
+
+    if (env === "TEST") {
+      tokenUrl = "https://test.cashfree.com/api/v2/cftoken/order"; //for TEST
+    } else {
+      tokenUrl = "https://api.cashfree.com/api/v2/cftoken/order"; //for PROD
     }
-  }
 
-  getToken = () => {
-    try {
-      const { orderId, orderAmount, orderCurrency } = this.state.order;
-      const tokenUrl = "https://test.cashfree.com/api/v2/cftoken/order";
-      //const tokenUrl = "http://172.18.20.167:80/api/v2/cftoken/order";
-      fetch(tokenUrl, {
-        method: "POST",
-        cache: "no-cache",
-        headers: {
-          "Content-Type": "application/json",
-          "x-client-id": "32528e2b87b06b476ae6982dc82523",
-          "x-client-secret": "b61d1f96d0b20cc5c1427ff213a52b0ca735af06",
-          //'x-client-id': 'MTA2OTkyMDE1ODE0NDIyNTExNjYjIz',
-          //'x-client-secret': '63ca0b83c8ca85d73fff9c3fd29a7c87e292fd63'
-        },
-        body: JSON.stringify({
-          orderId,
-          orderAmount,
-          orderCurrency,
-        }),
-      })
-        .then((result) => {
-          return result.json();
-        })
+    orderId = "Order" + parseInt(100000000 * Math.random(), 10);
+    let orderApiMap = {
+      orderId: orderId,
+      orderAmount: this.state.totalAmount,
+      orderCurrency: "INR",
+    };
+
+    const postParams = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-client-id": apiKey,
+        "x-client-secret": apiSecret,
+      },
+      body: JSON.stringify(orderApiMap),
+    };
+    return new Promise((resolve, reject) => {
+      let cfToken;
+      fetch(tokenUrl, postParams)
         .then((response) => {
-          // this.setState({urlCalled: true, urlResponse: response});
-          return response;
+          return response.json();
         })
-        .then((response) => {
-          if (
-            response.status === "OK" &&
-            response.message === "Token generated"
-          ) {
-            var order = { ...this.state.order };
-            order.tokenData = response.cftoken;
-            this.setState({
-              order,
-              modifyOrder: false,
-              urlCalled: true,
-              urlResponse: response,
-            });
+        .then((data) => {
+          // console.log("data" + data);
+          if (data.status === "ERROR") {
+            console.log(
+              `Error (code: ${data.subCode}, message: ${data.message})`
+            );
+            console.log(
+              "Please check the apiKey and apiSecret credentials and the environment"
+            );
             return;
           }
-          throw {
-            name: "response not success",
-            message: "response was not successfull \n",
-            response,
-          };
-        })
-        .catch((err) => {
-          console.log("err caught");
-          console.log(err);
+          try {
+            cfToken = data.cftoken;
+            let map = {
+              orderId: orderId,
+              orderAmount: this.state.totalAmount.toString(),
+              tokenData: cfToken,
+              orderCurrency: "INR",
+            };
+            return resolve(map);
+          } catch (error) {
+            console.log("THE ERROR IS " + data);
+            return reject(data);
+          }
         });
-    } catch (err) {}
-  };
+    });
+  }
+
+  async _startCheckout(mode, appId) {
+    let responseHandler = (result) => {
+      try {
+        let output = "";
+        JSON.parse(result, function (key, value) {
+          if (key !== "") {
+            output = output + key + " : " + value + "\n";
+          }
+
+          console.log(result);
+
+          if (result.txStatus === "SUCCESS") {
+            navigate("SuccessPage", {
+              payment_mode: "online",
+              transaction_details: result,
+            });
+          } else {
+            navigate("FailurePage");
+          }
+        });
+      } catch (error) {
+        navigate("FailurePage");
+      }
+    };
+
+    try {
+      let map = await this._createOrderWithToken();
+      // console.log('THE MAP IS ' + JSON.stringify(map));
+      let checkoutMap = {
+        orderId: map.orderId,
+        orderAmount: map.orderAmount,
+        appId: apiKey,
+        tokenData: map.tokenData,
+        orderCurrency: map.orderCurrency,
+        orderNote: "Test Note",
+        customerName: "Cashfree User",
+        customerPhone: "9999999999",
+        customerEmail: "info@truegood.in",
+        hideOrderId: true,
+        color1: "#6002EE",
+        color2: "#ffff1f",
+      };
+
+      RNPgReactNativeSdk.startPaymentWEB(checkoutMap, env, responseHandler);
+    } catch (error) {
+      alert("Error Occured while starting payment. Please try again later.");
+    }
+  }
 
   render() {
-    const { order, testData, eventData, urlCalled } = this.state;
-    let decode = "";
-    if (testData) {
-      decode = base64.decode(testData);
-    }
-    if (!urlCalled) {
-      return null;
-    }
     return (
       <View style={styles.container}>
-        <CashfreePG
-          appId={order.appId}
-          orderId={order.orderId}
-          orderAmount={order.orderAmount}
-          //orderCurrency = "INR"
-          orderNote="This is an order note"
-          source="reactsdk"
-          customerName="John"
-          customerEmail={order.customerEmail}
-          customerPhone="1234561234"
-          notifyUrl=""
-          paymentModes=""
-          env="test"
-          tokenData={order.tokenData}
-          callback={(response) => {
-            let parsedResponse = JSON.parse(response);
-
-            if (parsedResponse.txStatus === "SUCCESS") {
-              //TODO: make the api call to the backend.....
-              navigate("SuccessPage", {
-                payment_mode: "online",
-                transaction_details: parsedResponse,
-              });
-            } else {
-              navigate("FailurePage");
-            }
-          }}
-          //paymentOption = "nb" //nb,card,upi,wallet
-          paymentCode="3333"
-          //paymentCode = "4001"
-          upi_vpa="testsuccess@gocash"
-        />
-        <Text>{testData}</Text>
-        <Text>{eventData}</Text>
+        <View style={styles.button}>
+          <Button
+            onPress={() => this._startCheckout(WEB, null)}
+            title="START PAYMENT"
+          />
+        </View>
       </View>
     );
   }
@@ -158,20 +155,47 @@ export default class PaymentScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
+    padding: Platform.OS === "ios" ? 56 : 24,
+    backgroundColor: "#eaeaea",
+    alignItems: "center",
+    flexDirection: "column",
     flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 10,
   },
   button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
+    color: "#61aafb",
+    margin: 8,
+    width: 200,
   },
-  countContainer: {
+  round_icon_buttons: {
     alignItems: "center",
-    padding: 10,
+    justifyContent: "center",
+    width: 50,
+    height: 50,
+    margin: 16,
   },
-  countText: {
-    color: "#FF00FF",
+  upi_icon_containers: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
+  upi_icons_text: {
+    fontSize: 12,
+    width: 100,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  upi_app_not_found: {
+    fontSize: 14,
+    justifyContent: "center",
+    alignContent: "center",
+  },
+  upi_image: {
+    width: 50,
+    height: 50,
+  },
+  response_text: {
+    margin: 16,
+    fontSize: 14,
   },
 });

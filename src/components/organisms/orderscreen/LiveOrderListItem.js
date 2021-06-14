@@ -1,8 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-
 import { COLORS, FONTS } from "../../../constants/theme";
-
 //Required Imports
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -12,7 +10,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { navigate } from "../../../navigations/RootNavigation";
 
 const LiveOrderListItem = ({
-  item: { _id, order_total, order_details, order_status, id_ODDO },
+  item: { _id, order_total, order_details, delivery_status, id_ODDO },
 }) => {
   return (
     <View style={styles.container}>
@@ -25,9 +23,8 @@ const LiveOrderListItem = ({
           </Text>
         </View>
         <Text style={styles.orderStatusTextStyle}>
-          Status: {order_status === "draft" && "Order just Placed."}
-          {order_status === "sale" && "Order Confirmed by our Team."}
-          {order_status === "done" && "Delivery Initiated by our Team."}
+          Status: {delivery_status === "in_progress" && "Order just Placed."}
+          {delivery_status === "shipped" && "Delivery Initiated by our Team."}
         </Text>
       </View>
       <TouchableOpacity

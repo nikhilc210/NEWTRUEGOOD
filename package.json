@@ -47,6 +47,7 @@
     "react-native-linear-gradient": "^2.5.6",
     "react-native-otp-textinput": "^0.0.7",
     "react-native-paper": "^4.2.0",
+    "react-native-pg-react-native-sdk": "^2.1.5",
     "react-native-raw-bottom-sheet": "^2.2.0",
     "react-native-reanimated": "^1.13.1",
     "react-native-render-html": "^5.1.0",

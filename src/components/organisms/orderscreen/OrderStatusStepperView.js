@@ -1,38 +1,38 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React from "react";
+import { View, StyleSheet } from "react-native";
 //Required Imports
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-import StepIndicator from 'react-native-step-indicator';
+import StepIndicator from "react-native-step-indicator";
 
-const labels = ['Order Placed', 'Order Dispatched', 'Order delivered'];
+const labels = ["Order Placed", "Order Shipped", "Order Delivered"];
 
 const customStyles = {
   stepIndicatorSize: 25,
   currentStepIndicatorSize: 30,
   separatorStrokeWidth: 2,
-  seperatorStrokeBorderStyle: 'dashed',
+  seperatorStrokeBorderStyle: "dashed",
   currentStepStrokeWidth: 3,
-  stepStrokeCurrentColor: '#60B246',
+  stepStrokeCurrentColor: "#60B246",
   stepStrokeWidth: 3,
-  stepStrokeFinishedColor: '#60B246',
-  stepStrokeUnFinishedColor: '#aaaaaa',
-  separatorFinishedColor: '#60B246',
-  separatorUnFinishedColor: '#aaaaaa',
-  stepIndicatorFinishedColor: '#60B246',
-  stepIndicatorUnFinishedColor: '#ffffff',
-  stepIndicatorCurrentColor: '#ffffff',
+  stepStrokeFinishedColor: "#60B246",
+  stepStrokeUnFinishedColor: "#aaaaaa",
+  separatorFinishedColor: "#60B246",
+  separatorUnFinishedColor: "#aaaaaa",
+  stepIndicatorFinishedColor: "#60B246",
+  stepIndicatorUnFinishedColor: "#ffffff",
+  stepIndicatorCurrentColor: "#ffffff",
   stepIndicatorLabelFontSize: 13,
   currentStepIndicatorLabelFontSize: 13,
-  stepIndicatorLabelCurrentColor: '#60B246',
-  stepIndicatorLabelFinishedColor: '#ffffff',
-  stepIndicatorLabelUnFinishedColor: '#aaaaaa',
-  labelColor: '#999999',
+  stepIndicatorLabelCurrentColor: "#60B246",
+  stepIndicatorLabelFinishedColor: "#ffffff",
+  stepIndicatorLabelUnFinishedColor: "#aaaaaa",
+  labelColor: "#999999",
   labelSize: 13,
-  currentStepLabelColor: '#60B246',
+  currentStepLabelColor: "#60B246",
 };
 
-const OrderStatusStepperView = ({currentPosition}) => {
+const OrderStatusStepperView = ({ currentPosition }) => {
   return (
     <View style={styles.container}>
       <StepIndicator
@@ -48,9 +48,9 @@ export default OrderStatusStepperView;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: hp('3%'),
-    borderTopColor: '#B7BCC6',
+    marginTop: hp("3%"),
+    borderTopColor: "#B7BCC6",
     borderTopWidth: 1,
-    paddingTop: hp('3%'),
+    paddingTop: hp("3%"),
   },
 });
