@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.cashfree.pg:android-sdk:1.7.8@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/78e5410cd21cc8705a75a2961e8d44c7/android-sdk-1.7.8/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/78e5410cd21cc8705a75a2961e8d44c7/android-sdk-1.7.8/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/78e5410cd21cc8705a75a2961e8d44c7/android-sdk-1.7.8/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
