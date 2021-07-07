@@ -15,6 +15,12 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* TruegoodTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* TruegoodTests.m */; };
+		313B908F26963DE4009FBE5E /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 313B908E26963DE4009FBE5E /* libRNGoogleSignin.a */; };
+		313B909126963DF1009FBE5E /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313B909026963DF1009FBE5E /* AddressBook.framework */; };
+		313B909326963DFD009FBE5E /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313B909226963DFD009FBE5E /* SafariServices.framework */; };
+		313B909526963E07009FBE5E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 313B909426963E07009FBE5E /* SystemConfiguration.framework */; };
+		313B909726963E11009FBE5E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 313B909626963E11009FBE5E /* libz.tbd */; };
+		31ADE703269229F20028405B /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ADE702269229F20028405B /* test.swift */; };
 		34C3A88A2589CBB7006A164F /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34C3A8892589CBB7006A164F /* Roboto.ttf */; };
 		34C3A88C2589CDD5006A164F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 34C3A88B2589CDD5006A164F /* GoogleService-Info.plist */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
@@ -54,6 +60,14 @@
 		2D02E47B1E0B4A5D006451C7 /* Truegood-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Truegood-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Truegood-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Truegood-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EC9301F274046858BC07F7E /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
+		313B908E26963DE4009FBE5E /* libRNGoogleSignin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libRNGoogleSignin.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		313B909026963DF1009FBE5E /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		313B909226963DFD009FBE5E /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		313B909426963E07009FBE5E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		313B909626963E11009FBE5E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		31ADE701269229F20028405B /* Truegood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Truegood-Bridging-Header.h"; sourceTree = "<group>"; };
+		31ADE702269229F20028405B /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
+		31BE84B42690506400F0EFD8 /* Truegood.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Truegood.entitlements; path = Truegood/Truegood.entitlements; sourceTree = "<group>"; };
 		34C3A8892589CBB7006A164F /* Roboto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Roboto.ttf; path = ../android/app/src/main/assets/fonts/Roboto.ttf; sourceTree = "<group>"; };
 		34C3A88B2589CDD5006A164F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Truegood/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A434456D05E43CD9F5F512A /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -90,6 +104,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				313B909726963E11009FBE5E /* libz.tbd in Frameworks */,
+				313B909526963E07009FBE5E /* SystemConfiguration.framework in Frameworks */,
+				313B909326963DFD009FBE5E /* SafariServices.framework in Frameworks */,
+				313B909126963DF1009FBE5E /* AddressBook.framework in Frameworks */,
+				313B908F26963DE4009FBE5E /* libRNGoogleSignin.a in Frameworks */,
 				8A3A639EAB8A123EC9A94E9D /* libPods-Truegood.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -131,6 +150,7 @@
 		13B07FAE1A68108700A75B9A /* Truegood */ = {
 			isa = PBXGroup;
 			children = (
+				31BE84B42690506400F0EFD8 /* Truegood.entitlements */,
 				34C3A88B2589CDD5006A164F /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -139,6 +159,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				31ADE702269229F20028405B /* test.swift */,
+				31ADE701269229F20028405B /* Truegood-Bridging-Header.h */,
 			);
 			name = Truegood;
 			sourceTree = "<group>";
@@ -146,6 +168,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				313B909626963E11009FBE5E /* libz.tbd */,
+				313B909426963E07009FBE5E /* SystemConfiguration.framework */,
+				313B909226963DFD009FBE5E /* SafariServices.framework */,
+				313B909026963DF1009FBE5E /* AddressBook.framework */,
+				313B908E26963DE4009FBE5E /* libRNGoogleSignin.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				C33461D7B739261089262A0E /* libPods-Truegood.a */,
@@ -253,6 +280,7 @@
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				E9D7B5BF9B142586252E836D /* [CP] Copy Pods Resources */,
+				5205004B2750EA41FD2A2B1A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -313,8 +341,9 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 3322FGLKWW;
-						LastSwiftMigration = 1120;
+						DevelopmentTeam = 6866G9VNN8;
+						LastSwiftMigration = 1250;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -412,6 +441,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		5205004B2750EA41FD2A2B1A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Truegood/Pods-Truegood-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/CFSDK/CFSDK.framework/CFSDK",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CFSDK.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Truegood/Pods-Truegood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		BCAAA88BD15301E9628D5CCC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -543,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				31ADE703269229F20028405B /* test.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -583,6 +631,7 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -605,6 +654,7 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = TruegoodTests/Info.plist;
@@ -627,19 +677,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 3322FGLKWW;
+				CODE_SIGN_ENTITLEMENTS = Truegood/Truegood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6866G9VNN8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Truegood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = in.Truegood.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = in.Truegood;
 				PRODUCT_NAME = Truegood;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Truegood-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -652,18 +707,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 6;
-				DEVELOPMENT_TEAM = 3322FGLKWW;
+				CODE_SIGN_ENTITLEMENTS = Truegood/Truegood.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6866G9VNN8;
 				INFOPLIST_FILE = Truegood/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = in.Truegood.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = in.Truegood;
 				PRODUCT_NAME = Truegood;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Truegood-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

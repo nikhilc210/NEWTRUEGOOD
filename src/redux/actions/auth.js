@@ -1,12 +1,11 @@
-import axios from 'axios';
-import setAuthToken from '../../../utils/setAuthToken';
+import axios from "axios";
+import setAuthToken from "../../../utils/setAuthToken";
 
-import Toast from 'react-native-simple-toast'
-
+import Toast from "react-native-simple-toast";
 
 //API IMPORTS
-import {API_URL} from '../../constants/url';
-import {navigate} from '../../navigations/RootNavigation';
+import { API_URL } from "../../constants/url";
+import { navigate } from "../../navigations/RootNavigation";
 
 import {
   ADD_USER_DETAILS,
@@ -25,7 +24,7 @@ import {
   UPDATE_USER_SUCCESS,
   USER_LOAD_SUCCESS,
   USER_LOG_OUT,
-} from '../types';
+} from "../types";
 
 export const loadUser = (token) => async (dispatch) => {
   setAuthToken(token);
@@ -35,24 +34,28 @@ export const loadUser = (token) => async (dispatch) => {
       type: USER_LOAD_SUCCESS,
       payload: res.data,
     });
-    
-    navigate('DrawerNavigator');
+
+    navigate("DrawerNavigator");
   } catch (err) {
     dispatch({
       type: USER_LOG_OUT,
     });
-    navigate('DrawerNavigator');
+    navigate("DrawerNavigator");
   }
 };
 
 export const checkUser = (userData, type) => async (dispatch) => {
-  if (type === 'fb') {
+  if (type === "fb") {
     dispatch({
       type: FACEBOOK_LOGIN_REQUEST,
     });
-  } else if (type === 'google') {
+  } else if (type === "google") {
     dispatch({
       type: GOOGLE_LOGIN_REQUEST,
+    });
+  } else if (type === "apple") {
+    dispatch({
+      type: "APPLE_LOGIN_REQUEST",
     });
   } else {
     dispatch({
@@ -62,7 +65,7 @@ export const checkUser = (userData, type) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -75,11 +78,17 @@ export const checkUser = (userData, type) => async (dispatch) => {
   try {
     await axios.post(`${API_URL}/customer/check`, body, config);
 
+    console.log(userData);
+
     dispatch({
       type: ADD_USER_DETAILS,
       payload: userData,
     });
-    
+
+    // dispatch({
+    //   type: LOGIN_SUCCESS,
+    //   payload: userData,
+    // });
   } catch (err) {
     dispatch({
       type: ADD_USER_DETAILS_ERROR,
@@ -106,7 +115,7 @@ export const registerUser = (userData) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -122,7 +131,7 @@ export const registerUser = (userData) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/register`,
       body,
-      config,
+      config
     );
 
     dispatch({
@@ -130,7 +139,7 @@ export const registerUser = (userData) => async (dispatch) => {
       payload: response.data,
     });
 
-    Toast.show('Sign up Successful !', Toast.SHORT);
+    Toast.show("Sign up Successful !", Toast.SHORT);
 
     //
   } catch (err) {
@@ -151,7 +160,7 @@ export const loginUser = (userData) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -166,14 +175,14 @@ export const loginUser = (userData) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/loginSocial`,
       body,
-      config,
+      config
     );
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
     });
 
-    Toast.show('The user login is successful !', Toast.SHORT);
+    Toast.show("The user login is successful !", Toast.SHORT);
   } catch (err) {
     const errors = err?.response?.data?.errors;
     dispatch({
@@ -192,7 +201,7 @@ export const facebookLoginUser = (userData) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -207,14 +216,55 @@ export const facebookLoginUser = (userData) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/loginSocial`,
       body,
-      config,
+      config
     );
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
     });
 
-    Toast.show('The user login is successful !', Toast.SHORT);
+    Toast.show("The user login is successful !", Toast.SHORT);
+  } catch (err) {
+    const errors = err?.response?.data?.errors;
+    dispatch({
+      type: LOGIN_ERROR,
+    });
+    if (errors) {
+      errors.forEach((error) => alert(error.message));
+    }
+  }
+};
+
+export const appleLoginUser = (userData) => async (dispatch) => {
+  dispatch({
+    type: "APPLE_LOGIN_REQUEST",
+  });
+
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  let sendData = {
+    name: userData.name,
+    email: userData.email,
+  };
+
+  const body = JSON.stringify(sendData);
+
+  try {
+    const response = await axios.post(
+      `${API_URL}/customer/loginSocial`,
+      body,
+      config
+    );
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: response.data,
+    });
+
+    Toast.show("The user login is successful !", Toast.SHORT);
   } catch (err) {
     const errors = err?.response?.data?.errors;
     dispatch({
@@ -233,7 +283,7 @@ export const googleLoginUser = (userData) => async (dispatch) => {
 
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -248,7 +298,7 @@ export const googleLoginUser = (userData) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/loginSocial`,
       body,
-      config,
+      config
     );
     dispatch({
       type: LOGIN_SUCCESS,
@@ -256,9 +306,8 @@ export const googleLoginUser = (userData) => async (dispatch) => {
     });
 
     setTimeout(() => {
-      Toast.show('The user login is successful !', Toast.SHORT);      
+      Toast.show("The user login is successful !", Toast.SHORT);
     }, 500);
-
   } catch (err) {
     const errors = err?.response?.data?.errors;
     dispatch({
@@ -276,7 +325,7 @@ export const loginUserMobile = (data) => async (dispatch) => {
   });
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -290,10 +339,10 @@ export const loginUserMobile = (data) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/loginMobile`,
       body,
-      config,
+      config
     );
 
-    Toast.show('The user login is successful !', Toast.SHORT);
+    Toast.show("The user login is successful !", Toast.SHORT);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: response.data,
@@ -305,15 +354,13 @@ export const loginUserMobile = (data) => async (dispatch) => {
       type: LOGIN_ERROR,
     });
     if (errors) {
-      errors.forEach((error) =>
-        Toast.show(error.message, Toast.SHORT),
-      );
+      errors.forEach((error) => Toast.show(error.message, Toast.SHORT));
     }
   }
 };
 
 export const LogOut = () => async (dispatch) => {
-  dispatch({type: EMPTY_CART});
+  dispatch({ type: EMPTY_CART });
   dispatch({
     type: USER_LOG_OUT,
   });
@@ -325,7 +372,7 @@ export const updateUserData = (userData) => async (dispatch) => {
   });
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -340,7 +387,7 @@ export const updateUserData = (userData) => async (dispatch) => {
     const response = await axios.post(
       `${API_URL}/customer/update`,
       body,
-      config,
+      config
     );
 
     dispatch({
@@ -348,7 +395,7 @@ export const updateUserData = (userData) => async (dispatch) => {
       payload: response.data,
     });
 
-    Toast.show('Profile Updated Successfully !', Toast.SHORT);
+    Toast.show("Profile Updated Successfully !", Toast.SHORT);
   } catch (err) {
     const errors = err?.response?.data?.errors;
     dispatch({

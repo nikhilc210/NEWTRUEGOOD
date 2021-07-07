@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>CFSDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>DoubleConversion.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -79,6 +84,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RNAppleAuthentication.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>RNCAsyncStorage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -105,6 +115,11 @@
 			<false/>
 		</dict>
 		<key>RNGoogleSignin.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNPgReactNativeSdkBridge.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -254,7 +269,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>react-native-apple-authentication.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>react-native-element-dropdown.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>react-native-fbsdk.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>react-native-netinfo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

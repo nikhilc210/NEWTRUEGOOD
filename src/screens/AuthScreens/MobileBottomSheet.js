@@ -47,7 +47,6 @@ function MobileBottomSheet({
   optData: { loading, error },
 }) {
   const rbSheet = useRef(null);
-
   const [sentOTP, setSentOTP] = useState(false);
 
   useEffect(() => {
@@ -55,10 +54,11 @@ function MobileBottomSheet({
   }, []);
 
   useEffect(() => {
-    if (!error && !loading && sentOTP) {
-      mobileRef.current.close();
+    if (!error && !loading) {
+      mobileRef?.current?.close();
+
       setTimeout(() => {
-        otpRef.current.open();
+        otpRef?.current?.open();
       }, 1000);
     }
   }, [error, loading, sentOTP]);

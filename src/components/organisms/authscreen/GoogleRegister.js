@@ -7,7 +7,10 @@ import { COLORS } from "../../../constants/theme";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 //Facebook Login Imports
-import { GoogleSignin, statusCodes } from "react-native-google-signin";
+import {
+  GoogleSignin,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
 
 import Toast from "react-native-simple-toast";
 
@@ -28,7 +31,7 @@ const GoogleRegister = ({
       await GoogleSignin.configure({
         scopes: ["email"],
         webClientId:
-          "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+          "134975082543-7smto7dgsmad5rj19gs7g7sdjq2b1qgc.apps.googleusercontent.com",
         offlineAccess: false,
       });
       await GoogleSignin.hasPlayServices();

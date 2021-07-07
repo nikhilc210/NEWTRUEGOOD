@@ -25,6 +25,7 @@ import FacebookLogin from "./FacebookLogin";
 import { ActivityIndicator } from "react-native-paper";
 import { addUserNumber } from "../../../redux/actions/auth";
 import GoogleLogin from "./GoogleLogin";
+import AppleLogin from "./AppleLogin";
 
 const LoginSchema = Yup.object().shape({
   phoneNumber: Yup.string()
@@ -66,6 +67,7 @@ const LoginInputPart = ({
       <View style={styles.socialLoginViewStyle}>
         <FacebookLogin />
         <GoogleLogin />
+        <AppleLogin />
       </View>
       <View style={{ marginHorizontal: wp("20%") }}>
         <Hr lineColor={COLORS.textGrey} width={0.5} text="or" />

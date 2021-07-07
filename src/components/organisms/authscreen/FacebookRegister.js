@@ -28,7 +28,8 @@ const FacebookRegister = ({
       bottomRef.current.close();
       setTimeout(() => {
         mobileRef.current.open();
-      }, 100);
+      }, 500);
+
       Toast.show(
         "Account Created we need to verify you with mobile number please provide your mobile number",
         Toast.SHORT
@@ -63,8 +64,8 @@ const FacebookRegister = ({
   };
 
   const onConfirmPress = async () => {
-    setVisible(false);
     await checkUser({ email, name }, "fb");
+    setVisible(false);
   };
 
   return (

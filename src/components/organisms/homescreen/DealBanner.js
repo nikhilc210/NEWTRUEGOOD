@@ -1,17 +1,17 @@
-import React, {PureComponent} from 'react';
-import {View, Image, ScrollView, Dimensions} from 'react-native';
+import React, { PureComponent } from "react";
+import { View, Image, ScrollView, Dimensions } from "react-native";
 
-const WIDTH = Dimensions.get('window').width;
+const WIDTH = Dimensions.get("window").width;
 
 //Required Imports
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 export const images = [
-  require('../../../assets/images/banner1.jpg'),
-  require('../../../assets/images/banner2.jpg'),
-  require('../../../assets/images/banner3.jpg'),
-  require('../../../assets/images/banner4.jpg'),
-  require('../../../assets/images/banner5.jpg'),
+  require("../../../assets/images/banner1.jpg"),
+  require("../../../assets/images/banner2.jpg"),
+  require("../../../assets/images/banner3.jpg"),
+  require("../../../assets/images/banner4.jpg"),
+  require("../../../assets/images/banner5.jpg"),
 ];
 
 const DOT_SIZE = 7;
@@ -58,7 +58,7 @@ export class DealBanner extends PureComponent {
   };
 
   onScroll = (event) => {
-    const {contentOffset} = event.nativeEvent;
+    const { contentOffset } = event.nativeEvent;
     const currentIndex = Math.round(contentOffset.x / WIDTH);
 
     if (this.state.currentIndex !== currentIndex) {
@@ -75,17 +75,20 @@ export class DealBanner extends PureComponent {
           showsHorizontalScrollIndicator={false}
           pagingEnabled
           ref={this.scrollView}
-          onScroll={this.onScroll}>
+          scrollEventThrottle={16}
+          onScroll={this.onScroll}
+        >
           {images.map((img, i) => (
             <View
               key={i}
-              style={{height: hp('22%'), width: WIDTH, position: 'relative'}}>
+              style={{ height: hp("22%"), width: WIDTH, position: "relative" }}
+            >
               <Image
                 source={img}
                 style={{
-                  resizeMode: 'stretch',
+                  resizeMode: "stretch",
                   width: WIDTH,
-                  height: hp('22%'),
+                  height: hp("22%"),
                 }}
               />
             </View>
@@ -93,15 +96,16 @@ export class DealBanner extends PureComponent {
         </ScrollView>
         <View
           style={{
-            height: hp('22%'),
+            height: hp("22%"),
             width: WIDTH,
-            position: 'absolute',
-            flexDirection: 'row',
-            alignItems: 'flex-end',
-            justifyContent: 'center',
+            position: "absolute",
+            flexDirection: "row",
+            alignItems: "flex-end",
+            justifyContent: "center",
             paddingBottom: 10,
-          }}>
-          {Array.from({length: images.length}).map((_, index) => (
+          }}
+        >
+          {Array.from({ length: images.length }).map((_, index) => (
             <View
               key={index}
               style={{
@@ -110,7 +114,7 @@ export class DealBanner extends PureComponent {
                 width: DOT_SIZE,
                 borderRadius: DOT_SIZE / 2,
                 backgroundColor:
-                  index === this.state.currentIndex ? '#1CA953' : '#E8EDF7',
+                  index === this.state.currentIndex ? "#1CA953" : "#E8EDF7",
               }}
             />
           ))}

@@ -34,6 +34,7 @@ import MainOfferView from "../../components/organisms/homescreen/MainOfferView";
 import { useFocusEffect } from "@react-navigation/core";
 import RecommendedProducts from "../../components/organisms/RecommendedProducts";
 import BestSellerProducts from "../../components/organisms/BestSellerProducts";
+import OTPBottomSheet from "../AuthScreens/OTPBottomSheet";
 
 function HomeScren() {
   useFocusEffect(
@@ -95,6 +96,7 @@ function HomeScren() {
       <MobileBottomSheet />
       <LoginOTPSheet />
       <RegisterOTPSheet />
+      <OTPBottomSheet />
     </>
   );
 }

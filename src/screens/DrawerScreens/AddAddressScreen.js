@@ -22,6 +22,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { pincodeList } from "../../api/static";
 import { Picker } from "@react-native-picker/picker";
 import { ScrollView } from "react-native";
+import RNPickerSelect from 'react-native-picker-select';
 
 const DeliverySchema = Yup.object().shape({
   firstname: Yup.string().required("Please enter your firstname"),
@@ -130,10 +131,10 @@ const AddAddressScreen = ({
                     <Text style={styles.errorStyle}>{errors.number}</Text>
                   ) : null}
                   <View style={styles.dropDownStyle}>
-                    <Picker
+                    {Platform.OS === 'android' ?  <Picker
                       selectedValue={values?.addressType}
                       style={{
-                        height: hp("6%"),
+                        height: hp("5%"),
                         width: Dimensions.get("window").width - 40,
                       }}
                       onValueChange={(itemValue) =>
@@ -142,16 +143,29 @@ const AddAddressScreen = ({
                     >
                       <Picker.Item label="Home" value="Home" />
                       <Picker.Item label="Office" value="Office" />
-                    </Picker>
+                    </Picker> : <RNPickerSelect
+                    style={{
+                      width: Dimensions.get("window").width - 40,
+                    }}
+                          onValueChange={(itemValue) =>
+                            setFieldValue("addressType", itemValue, true)
+                          }
+                          placeholder="Select address type"
+                          items={[
+                            {label: 'Home', value:'Home'},
+                            {
+                              label: 'Office', value: 'Office'
+                            }
+                          ]}
+                      />}                    
                   </View>
                   {errors.addressType && touched.addressType ? (
                     <Text style={styles.errorStyle}>{errors.addressType}</Text>
                   ) : null}
                   <TextInput
-                    style={styles.inputStyle}
+                    style={[styles.inputStyle, {height:70}]}
                     placeholder="Enter Street Address"
-                    multiline={true}
-                    numberOfLines={4}
+                     multiline={true}
                     onChangeText={handleChange("streetAddress")}
                     onBlur={handleBlur("streetAddress")}
                     value={values.streetAddress}
@@ -164,7 +178,7 @@ const AddAddressScreen = ({
                   ) : null}
 
                   <View style={styles.dropDownStyle}>
-                    <Picker
+                    {Platform.OS === 'android' ? <Picker
                       selectedValue={values?.pincode}
                       style={{
                         height: hp("6%"),
@@ -183,7 +197,15 @@ const AddAddressScreen = ({
                           disabled={pincode.disabled}
                         />
                       ))}
-                    </Picker>
+                    </Picker>:<RNPickerSelect
+                          onValueChange={(itemValue) =>
+                            setFieldValue("pincode", itemValue, true)
+                          }
+                          placeholder="Select Pincode"
+                          items={pincodes}
+                      /> }
+
+              
                   </View>
 
                   {errors.pincode && touched.pincode ? (
@@ -293,5 +315,6 @@ const styles = StyleSheet.create({
     borderColor: COLORS.textGrey,
     borderRadius: hp("0.8%"),
     width: Dimensions.get("window").width - 40,
+    padding: Platform.OS === 'ios' ?  hp("2%"):0
   },
 });

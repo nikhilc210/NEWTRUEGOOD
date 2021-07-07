@@ -16,6 +16,7 @@ import * as Yup from "yup";
 import Hr from "react-native-hr-component";
 
 import FacebookRegister from "./FacebookRegister";
+import AppleRegister from "./AppleRegister";
 import GoogleRegister from "./GoogleRegister";
 
 //Redux Imports
@@ -59,6 +60,7 @@ const RegisterInputPart = ({
       <View style={styles.socialLoginViewStyle}>
         <FacebookRegister />
         <GoogleRegister />
+        <AppleRegister />
       </View>
       <View style={{ marginHorizontal: wp("20%") }}>
         <Hr lineColor={COLORS.textGrey} width={0.5} text="or" />

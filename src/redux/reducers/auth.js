@@ -15,26 +15,27 @@ import {
   UPDATE_USER_SUCCESS,
   USER_LOAD_SUCCESS,
   USER_LOG_OUT,
-} from '../types';
+} from "../types";
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from "@react-native-community/async-storage";
 
 const initialState = {
   token: null,
   user: null,
   receivedData: null,
-  receivedNumber: '',
+  receivedNumber: "",
   isAuthenticated: false,
   loading: false,
   checkUserLoading: false,
   updateLoading: false,
   facebookLoginLoading: false,
   googleLoginLoading: false,
+  appleLoginLoading: false,
 };
 
 const _storeData = async (token) => {
   try {
-    await AsyncStorage.setItem('TRUEGOOD:user_token', token);
+    await AsyncStorage.setItem("TRUEGOOD:user_token", token);
   } catch (error) {
     console.log(error);
   }
@@ -42,19 +43,19 @@ const _storeData = async (token) => {
 
 const _removeToken = async () => {
   try {
-    await AsyncStorage.removeItem('TRUEGOOD:user_token');
+    await AsyncStorage.removeItem("TRUEGOOD:user_token");
   } catch (error) {
     console.log(error);
   }
 };
 
 export default function (state = initialState, action) {
-  const {type, payload} = action;
+  const { type, payload } = action;
 
   switch (type) {
     //Check user & add detaisl
     case REQUEST_CHECK_USER:
-      return {...state, checkUserLoading: true};
+      return { ...state, checkUserLoading: true };
 
     case ADD_USER_DETAILS:
       return {
@@ -75,14 +76,14 @@ export default function (state = initialState, action) {
       };
 
     case ADD_USER_NUMBER:
-      return {...state, receivedNumber: payload, loading: false};
+      return { ...state, receivedNumber: payload, loading: false };
 
     //Load User
     case USER_LOAD_SUCCESS:
-      return {...state, user: payload, isAuthenticated: true, loading: false};
+      return { ...state, user: payload, isAuthenticated: true, loading: false };
     //Register user
     case REGISTER_REQUEST:
-      return {...state, loading: true};
+      return { ...state, loading: true };
 
     //Register success
     case REGISTER_SUCCESS:
@@ -90,14 +91,14 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         receivedData: null,
-        receivedNumber: '',
+        receivedNumber: "",
         facebookLoginLoading: false,
         googleLoginLoading: false,
       };
 
     //Login Types:
     case LOGIN_REQUEST:
-      return {...state, loading: true};
+      return { ...state, loading: true };
 
     case LOGIN_SUCCESS:
       _storeData(payload.token);
@@ -119,19 +120,22 @@ export default function (state = initialState, action) {
       return initialState;
 
     case UPDATE_USER_REQUEST:
-      return {...state, updateLoading: true};
+      return { ...state, updateLoading: true };
 
     case UPDATE_USER_SUCCESS:
-      return {...state, user: payload.user, updateLoading: false};
+      return { ...state, user: payload.user, updateLoading: false };
 
     case UPDATE_USER_ERROR:
-      return {...state, updateLoading: false};
+      return { ...state, updateLoading: false };
 
     case FACEBOOK_LOGIN_REQUEST:
-      return {...state, facebookLoginLoading: true};
+      return { ...state, facebookLoginLoading: true };
 
     case GOOGLE_LOGIN_REQUEST:
-      return {...state, googleLoginLoading: true};
+      return { ...state, googleLoginLoading: true };
+
+    case "APPLE_LOGIN_REQUEST":
+      return { ...state, appleLoginLoading: true };
 
     default:
       return state;

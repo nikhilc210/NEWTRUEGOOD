@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>684761604594-ncf70pk9i709h0mssvjedr7t7jkcj5d3.apps.googleusercontent.com</string>
+	<string>134975082543-g6btats9qqldsl5jvlgsj5igau8hb987.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.684761604594-ncf70pk9i709h0mssvjedr7t7jkcj5d3</string>
+	<string>com.googleusercontent.apps.134975082543-g6btats9qqldsl5jvlgsj5igau8hb987</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>684761604594-jtsdbgfvp0lr3ugod9rg6um5sih26si6.apps.googleusercontent.com</string>
+	<string>134975082543-8867hiu2htkn81sulcj4hgk40ru2s742.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAEbbG5LEl-dS4JwinNBj4YO1PeGKkDM9M</string>
+	<string>AIzaSyAiSAJpnIF7-nWk_eDDT-1UNIjAgidTuv8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>684761604594</string>
+	<string>134975082543</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>in.Truegood.ios</string>
+	<string>in.Truegood</string>
 	<key>PROJECT_ID</key>
-	<string>truegood-810ab</string>
+	<string>truegood-5cbc8</string>
 	<key>STORAGE_BUCKET</key>
-	<string>truegood-810ab.appspot.com</string>
+	<string>truegood-5cbc8.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:684761604594:ios:cc450b2037124019c00b6b</string>
+	<string>1:134975082543:ios:6d51b473c5ec84daaa76da</string>
 </dict>
 </plist>

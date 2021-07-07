@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 
-import { GoogleSignin } from "react-native-google-signin";
+import {
+  GoogleSignin,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
 
 import { TouchableOpacity } from "react-native";
 
@@ -24,10 +27,11 @@ const GoogleLogin = ({
     GoogleSignin.configure({
       scopes: ["email"],
       webClientId:
-        "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+        "134975082543-7smto7dgsmad5rj19gs7g7sdjq2b1qgc.apps.googleusercontent.com",
       offlineAccess: false,
+      // iosClientId:
+      //   "134975082543-r66d0dvvhmdp0urv58lb5fq6lbkauom5.apps.googleusercontent.com",
     });
-
     if (isAuthenticated && !googleLoginLoading) {
       bottomRef.current.close();
     }
@@ -35,21 +39,64 @@ const GoogleLogin = ({
 
   const GoogleFunction = async () => {
     try {
-      await GoogleSignin.signOut();
-      await GoogleSignin.hasPlayServices();
-      await GoogleSignin.signIn().then(async (userData) => {
-        const email = userData.user.email;
-        const name = userData.user.name;
-
-        let sendData = {
-          email,
-          name,
-        };
-        await googleLoginUser(sendData);
+      await GoogleSignin.configure({
+        scopes: ["email"],
+        webClientId:
+          "134975082543-7smto7dgsmad5rj19gs7g7sdjq2b1qgc.apps.googleusercontent.com",
+        offlineAccess: false,
+        // iosClientId:
+        //   "134975082543-r66d0dvvhmdp0urv58lb5fq6lbkauom5.apps.googleusercontent.com",
       });
+      await GoogleSignin.hasPlayServices({
+        showPlayServicesUpdateDialog: true,
+      });
+      const userInfo = await GoogleSignin.signIn();
+      console.log(userInfo);
+
+      const email = userInfo.user.email;
+      const name = userInfo.user.name;
+
+      let sendData = {
+        email,
+        name,
+      };
+      await googleLoginUser(sendData);
     } catch (error) {
-      console.warn("catch error", error.toString());
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        console.log("Sign In cancelled");
+        console.log(error);
+        // user cancelled the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        console.log("In progress");
+        console.log(error);
+        // operation (e.g. sign in) is in progress already
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+        console.log("pLay");
+        console.log(error);
+      } else {
+        console.log(error);
+        // some other error happened
+      }
     }
+
+    // try {
+    //   await GoogleSignin.signOut();
+
+    //   await GoogleSignin.hasPlayServices();
+    //   let userData = await GoogleSignin.signIn();
+
+    //   const email = userData.user.email;
+    //   const name = userData.user.name;
+
+    //   let sendData = {
+    //     email,
+    //     name,
+    //   };
+    //   await googleLoginUser(sendData);
+    // } catch (error) {
+    //   console.warn("catch error", error.toString());
+    // }
   };
 
   return (

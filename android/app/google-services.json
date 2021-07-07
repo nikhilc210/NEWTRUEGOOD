@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "684761604594",
-    "project_id": "truegood-810ab",
-    "storage_bucket": "truegood-810ab.appspot.com"
+    "project_number": "134975082543",
+    "project_id": "truegood-5cbc8",
+    "storage_bucket": "truegood-5cbc8.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:684761604594:android:0fb6f47818cef01dc00b6b",
+        "mobilesdk_app_id": "1:134975082543:android:f01a330927229ee6aa76da",
         "android_client_info": {
           "package_name": "in.truegood"
         }
       },
       "oauth_client": [
         {
-          "client_id": "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+          "client_id": "134975082543-7smto7dgsmad5rj19gs7g7sdjq2b1qgc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "in.truegood",
+            "certificate_hash": "674e261a912e38658c3586cef0c0e3b89ed7902b"
+          }
+        },
+        {
+          "client_id": "134975082543-7smto7dgsmad5rj19gs7g7sdjq2b1qgc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAD5vHqTdTh6sV6EfuU3C5--W9mUAZx3zQ"
+          "current_key": "AIzaSyCTAyeXDsZOH3e_ukjBbKcQj96VYavvDKM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "684761604594-c0slm4murrsl1psfdur43bsp4vohp4jn.apps.googleusercontent.com",
+              "client_id": "134975082543-j2ns5tr7ds6fr161k57n5h0hp567ot1d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
