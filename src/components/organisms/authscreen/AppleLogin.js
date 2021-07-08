@@ -1,41 +1,66 @@
-import React from "react";
-import { AppleButton } from "@invertase/react-native-apple-authentication";
-import { appleAuth } from "@invertase/react-native-apple-authentication";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import {
+  appleAuth,
+  appleAuthAndroid,
+} from "@invertase/react-native-apple-authentication";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 
 //Redux Imports
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { appleLoginUser, checkUser } from "../../../redux/actions/auth";
+import { appleLoginUser } from "../../../redux/actions/auth";
 import { COLORS } from "../../../constants/theme";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const AppleLogin = ({ checkUser, userData: { appleLoginLoading } }) => {
-  async function onAppleButtonPress() {
-    // performs login request
-    const appleAuthRequestResponse = await appleAuth.performRequest({
-      requestedOperation: appleAuth.Operation.LOGIN,
-      requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
-    });
-
-    // get current authentication state for user
-    // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
-    const credentialState = await appleAuth.getCredentialStateForUser(
-      appleAuthRequestResponse.user
-    );
-
-    // use credentialState response to ensure the user is authenticated
-    if (credentialState === appleAuth.State.AUTHORIZED) {
-      // user is authenticated
-      const { email, fullName } = appleAuthRequestResponse;
-
-      const sendData = {
-        email,
-        name: fullName,
-      };
-
-      await appleLoginUser(sendData);
+const AppleRegister = ({
+  appleLoginUser,
+  sheetRef: { bottomRef },
+  userData: { receivedData, appleLoginLoading },
+}) => {
+  useEffect(() => {
+    if (receivedData && !appleLoginLoading && used) {
+      bottomRef.current.close();
     }
+  }, [receivedData, appleLoginLoading]);
+
+  async function onAppleButtonPress() {
+    try {
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
+      });
+
+      // get current authentication state for user
+      // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
+      const credentialState = await appleAuth.getCredentialStateForUser(
+        appleAuthRequestResponse.user
+      );
+
+      // use credentialState response to ensure the user is authenticated
+      if (credentialState === appleAuth.State.AUTHORIZED) {
+        const { email, fullName } = appleAuthRequestResponse;
+        // alert(JSON.stringify(appleAuthRequestResponse));
+        const sendData = {
+          email,
+          name: fullName?.givenName
+            ? fullName?.givenName + " " + fullName.familyName
+            : "",
+        };
+
+        await appleLoginUser(sendData);
+      }
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  if (!appleAuth.isSupported) {
+    return null;
   }
 
   return (
@@ -51,9 +76,10 @@ const AppleLogin = ({ checkUser, userData: { appleLoginLoading } }) => {
   );
 };
 
-AppleLogin.propTypes = {
-  checkUser: PropTypes.func.isRequired,
+AppleRegister.propTypes = {
+  appleLoginUser: PropTypes.func.isRequired,
   userData: PropTypes.object,
+  sheetRef: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
@@ -61,7 +87,7 @@ const mapStateToProps = (state) => ({
   sheetRef: state.sheet, //name of prop = alert
 });
 
-export default connect(mapStateToProps, { checkUser })(AppleLogin);
+export default connect(mapStateToProps, { appleLoginUser })(AppleRegister);
 
 const styles = StyleSheet.create({
   container: {

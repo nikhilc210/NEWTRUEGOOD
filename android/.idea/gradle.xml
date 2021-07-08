@@ -12,15 +12,19 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/../node_modules/@invertase/react-native-apple-authentication/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/async-storage/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/clipboard/android" />
+            <option value="$PROJECT_DIR$/../node_modules/@react-native-community/google-signin/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/netinfo/android" />
+            <option value="$PROJECT_DIR$/../node_modules/@react-native-google-signin/google-signin/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-picker/picker/android" />
             <option value="$PROJECT_DIR$/../node_modules/lottie-react-native/src/android" />
+            <option value="$PROJECT_DIR$/../node_modules/react-native-apple-authentication/android" />
+            <option value="$PROJECT_DIR$/../node_modules/react-native-element-dropdown/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-fbsdk/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-gesture-handler/android" />
-            <option value="$PROJECT_DIR$/../node_modules/react-native-google-signin/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-linear-gradient/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-otp-verify/android" />
             <option value="$PROJECT_DIR$/../node_modules/react-native-pg-react-native-sdk/android" />
@@ -34,7 +38,6 @@
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -13,9 +13,21 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { LogOut } from "../../redux/actions/auth";
 import { Alert } from "react-native";
-
+import {
+  appleAuth,
+  appleAuthAndroid,
+} from "@invertase/react-native-apple-authentication";
 const DrawerUpperList = ({ LogOut }) => {
-  const onLogOutPress = () => {
+  const onLogOutPress = async () => {
+    try {
+      const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: AppleAuthRequestOperation.LOGOUT,
+      });
+    } catch (error) {
+      console.log("Error", error);
+    }
+    console.log("NOT");
+
     Alert.alert("Confirm", "Do you want to sign out?", [
       {
         text: "Cancel",

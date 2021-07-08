@@ -64,6 +64,7 @@ export default function (state = initialState, action) {
         checkUserLoading: false,
         facebookLoginLoading: false,
         googleLoginLoading: false,
+        appleLoginLoading: false,
       };
 
     case ADD_USER_DETAILS_ERROR:
@@ -73,6 +74,7 @@ export default function (state = initialState, action) {
         checkUserLoading: false,
         facebookLoginLoading: false,
         googleLoginLoading: false,
+        appleLoginLoading: false,
       };
 
     case ADD_USER_NUMBER:
