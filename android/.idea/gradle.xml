@@ -15,7 +15,6 @@
             <option value="$PROJECT_DIR$/../node_modules/@invertase/react-native-apple-authentication/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/async-storage/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/clipboard/android" />
-            <option value="$PROJECT_DIR$/../node_modules/@react-native-community/google-signin/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/masked-view/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-community/netinfo/android" />
             <option value="$PROJECT_DIR$/../node_modules/@react-native-google-signin/google-signin/android" />
