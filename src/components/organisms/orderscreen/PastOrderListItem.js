@@ -12,7 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { navigate } from "../../../navigations/RootNavigation";
 
 const PastOrderListItem = ({
-  item: { _id, order_total, order_details, order_status, id_ODDO },
+  item: { _id, order_total, order_details, delivery_status, id_ODDO },
 }) => {
   return (
     <View style={styles.container}>
@@ -25,8 +25,8 @@ const PastOrderListItem = ({
           </Text>
         </View>
         <Text style={styles.orderStatusTextStyle}>
-          {order_status === "delivery" && "Delivery Done by our Team."}
-          {order_status === "cancel" && "Order was cancelled."}
+          {delivery_status === "delivered" && "Delivery Done by our Team."}
+          {delivery_status === "cancel" && "Order was cancelled."}
         </Text>
       </View>
       <TouchableOpacity

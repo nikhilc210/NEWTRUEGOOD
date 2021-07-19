@@ -71,3 +71,16 @@ export const pincodeList = async () => {
     );
   }
 };
+
+export const termsFetch = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/static/getValue`, config);
+
+    return response.data.terms_and_conditions;
+  } catch (error) {
+    Alert.alert(
+      "UnExpected Error Occured",
+      "Unexpected Error Occured. Please try again!"
+    );
+  }
+};
