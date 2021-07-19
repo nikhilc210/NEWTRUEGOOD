@@ -12,7 +12,6 @@ target 'Truegood' do
 
   pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
-pod 'react-native-apple-authentication', :path => '../node_modules/react-native-apple-authentication'
 
 #   target 'TruegoodTests' do
 #     inherit! :complete

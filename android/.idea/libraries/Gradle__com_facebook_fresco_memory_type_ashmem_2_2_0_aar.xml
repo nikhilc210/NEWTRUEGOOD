@@ -1,9 +1,10 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:memory-type-ashmem:2.2.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6dd0027e95e46e481e4f4bb1d63a2df/memory-type-ashmem-2.2.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6dd0027e95e46e481e4f4bb1d63a2df/memory-type-ashmem-2.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f6dd0027e95e46e481e4f4bb1d63a2df/memory-type-ashmem-2.2.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5aba2ac2c65eeff50e8f292657b6065f/jetified-memory-type-ashmem-2.2.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5aba2ac2c65eeff50e8f292657b6065f/jetified-memory-type-ashmem-2.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5aba2ac2c65eeff50e8f292657b6065f/jetified-memory-type-ashmem-2.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.facebook.fresco/memory-type-ashmem/2.2.0/a13a191636dae9bd8ff40921916cf95e479bd8be/memory-type-ashmem-2.2.0-javadoc.jar!/" />
