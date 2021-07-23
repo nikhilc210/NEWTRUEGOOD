@@ -41,12 +41,12 @@ const RegisterInputPart = ({
   addUserNumber,
   sheetRef: { bottomRef, registerOtpRef },
   sendOtp,
-  optData: { loading, error },
+  optData: { loading, error, type },
 }) => {
   const [sentOTP, setSentOTP] = useState(false);
 
   useEffect(() => {
-    if (!error && !loading && sentOTP) {
+    if (!error && !loading && sentOTP && type === "register") {
       bottomRef.current.close();
       setTimeout(() => {
         registerOtpRef.current.open();

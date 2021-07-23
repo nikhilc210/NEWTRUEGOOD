@@ -42,16 +42,15 @@ const LoginInputPart = ({
   addUserNumber,
   sheetRef: { bottomRef, loginOtpRef },
   loginSendOtp,
-  optData: { loading, error },
+  optData: { loading, error, type },
 }) => {
   const [sentOTP, setSentOTP] = useState(false);
 
   useEffect(() => {
-    if (!error && !loading && sentOTP) {
+    if (!error && !loading && sentOTP && type === "login") {
       bottomRef.current.close();
       setTimeout(() => {
         loginOtpRef.current.open();
-        console.log("");
       }, 1000);
     }
   }, [error, loading]);

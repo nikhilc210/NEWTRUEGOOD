@@ -10,7 +10,10 @@ import {
 } from "react-native";
 
 //Required Imports
-import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP,
+} from "react-native-responsive-screen";
 //Import Themes
 import { COLORS, FONTS } from "../../constants/theme";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -88,7 +91,8 @@ function LoginOTPSheet({
             Please enter the otp you received
           </Text>
           <OTPTextView
-            containerStyle={styles.textInputContainer}
+            containerStyle={{ width: "80%" }}
+            textInputStyle={{ width: widthPercentageToDP("10%") }}
             handleTextChange={(text) => setOTP(text)}
             inputCount={6}
             keyboardType="numeric"
