@@ -91,7 +91,6 @@ function LoginOTPSheet({
             Please enter the otp you received
           </Text>
           <OTPTextView
-            containerStyle={{ width: "80%" }}
             textInputStyle={{ width: widthPercentageToDP("10%") }}
             handleTextChange={(text) => setOTP(text)}
             inputCount={6}
