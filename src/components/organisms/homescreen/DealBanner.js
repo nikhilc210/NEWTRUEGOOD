@@ -7,11 +7,11 @@ const WIDTH = Dimensions.get("window").width;
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 export const images = [
-  require("../../../assets/images/banner1.jpg"),
-  require("../../../assets/images/banner2.jpg"),
-  require("../../../assets/images/banner3.jpg"),
-  require("../../../assets/images/banner4.jpg"),
-  require("../../../assets/images/banner5.jpg"),
+  require("../../../assets/images/Slider_3.jpeg"),
+  require("../../../assets/images/app_banner-07.jpeg"),
+  require("../../../assets/images/Slider_5.jpeg"),
+  // require("../../../assets/images/banner4.jpg"),
+  // require("../../../assets/images/banner5.jpg"),
 ];
 
 const DOT_SIZE = 7;

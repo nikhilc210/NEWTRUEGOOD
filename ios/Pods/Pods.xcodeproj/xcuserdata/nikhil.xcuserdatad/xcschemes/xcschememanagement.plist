@@ -269,11 +269,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>react-native-apple-authentication.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>react-native-element-dropdown.xcscheme</key>
 		<dict>
 			<key>isShown</key>

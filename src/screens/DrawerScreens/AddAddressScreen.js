@@ -22,7 +22,7 @@ import { ActivityIndicator } from "react-native-paper";
 import { pincodeList } from "../../api/static";
 import { Picker } from "@react-native-picker/picker";
 import { ScrollView } from "react-native";
-import RNPickerSelect from 'react-native-picker-select';
+import RNPickerSelect from "react-native-picker-select";
 
 const DeliverySchema = Yup.object().shape({
   firstname: Yup.string().required("Please enter your firstname"),
@@ -74,7 +74,7 @@ const AddAddressScreen = ({
           <View style={{ padding: 20 }}>
             <Formik
               initialValues={{
-                addressType: "",
+                addressType: "Home",
                 streetAddress: "",
                 city: "",
                 firstname: names.length > 0 ? names[0] : "",
@@ -83,8 +83,9 @@ const AddAddressScreen = ({
                 number: user?.mobile_no,
               }}
               validationSchema={DeliverySchema}
-              onSubmit={async (values) => {
+              onSubmit={async (values, { resetForm }) => {
                 await addAddress(values);
+                resetForm({});
               }}
             >
               {({
@@ -131,41 +132,62 @@ const AddAddressScreen = ({
                     <Text style={styles.errorStyle}>{errors.number}</Text>
                   ) : null}
                   <View style={styles.dropDownStyle}>
-                    {Platform.OS === 'android' ?  <Picker
-                      selectedValue={values?.addressType}
-                      style={{
-                        height: hp("5%"),
-                        width: Dimensions.get("window").width - 40,
-                      }}
-                      onValueChange={(itemValue) =>
-                        setFieldValue("addressType", itemValue, true)
-                      }
-                    >
-                      <Picker.Item label="Home" value="Home" />
-                      <Picker.Item label="Office" value="Office" />
-                    </Picker> : <RNPickerSelect
-                    style={{
-                      width: Dimensions.get("window").width - 40,
-                    }}
-                          onValueChange={(itemValue) =>
-                            setFieldValue("addressType", itemValue, true)
-                          }
-                          placeholder="Select address type"
-                          items={[
-                            {label: 'Home', value:'Home'},
-                            {
-                              label: 'Office', value: 'Office'
-                            }
-                          ]}
-                      />}                    
+                    {Platform.OS === "android" ? (
+                      <Picker
+                        selectedValue={values?.addressType}
+                        style={{
+                          height: hp("5%"),
+                          width: Dimensions.get("window").width - 40,
+                        }}
+                        onValueChange={(itemValue) =>
+                          setFieldValue("addressType", itemValue, true)
+                        }
+                      >
+                        <Picker.Item label="Home" value="Home" />
+                        <Picker.Item label="Office" value="Office" />
+                      </Picker>
+                    ) : (
+                      // <RNPickerSelect
+                      //   style={{
+                      //     width: Dimensions.get("window").width - 40,
+                      //   }}
+                      //   onValueChange={(itemValue) =>
+                      //     setFieldValue("addressType", itemValue, true)
+                      //   }
+                      //   placeholder="Select address type"
+                      //   items={[
+                      //     { label: "Home", value: "Home" },
+                      //     {
+                      //       label: "Office",
+                      //       value: "Office",
+                      //     },
+                      //   ]}
+                      // />
+                      <RNPickerSelect
+                        style={{
+                          width: Dimensions.get("window").width - 40,
+                        }}
+                        onValueChange={(itemValue) =>
+                          setFieldValue("addressType", itemValue, true)
+                        }
+                        placeholder="Select address type"
+                        items={[
+                          { label: "Home", value: "Home" },
+                          {
+                            label: "Office",
+                            value: "Office",
+                          },
+                        ]}
+                      />
+                    )}
                   </View>
                   {errors.addressType && touched.addressType ? (
                     <Text style={styles.errorStyle}>{errors.addressType}</Text>
                   ) : null}
                   <TextInput
-                    style={[styles.inputStyle, {height:70}]}
+                    style={[styles.inputStyle, { height: 70 }]}
                     placeholder="Enter Street Address"
-                     multiline={true}
+                    multiline={true}
                     onChangeText={handleChange("streetAddress")}
                     onBlur={handleBlur("streetAddress")}
                     value={values.streetAddress}
@@ -178,34 +200,36 @@ const AddAddressScreen = ({
                   ) : null}
 
                   <View style={styles.dropDownStyle}>
-                    {Platform.OS === 'android' ? <Picker
-                      selectedValue={values?.pincode}
-                      style={{
-                        height: hp("6%"),
-                        width: Dimensions.get("window").width - 40,
-                      }}
-                      onValueChange={(itemValue) =>
-                        setFieldValue("pincode", itemValue, true)
-                      }
-                    >
-                      {pincodes?.map((pincode) => (
-                        <Picker.Item
-                          placeholder="Select Pincode"
-                          key={pincode.value}
-                          label={pincode.label}
-                          value={pincode.value}
-                          disabled={pincode.disabled}
-                        />
-                      ))}
-                    </Picker>:<RNPickerSelect
-                          onValueChange={(itemValue) =>
-                            setFieldValue("pincode", itemValue, true)
-                          }
-                          placeholder="Select Pincode"
-                          items={pincodes}
-                      /> }
-
-              
+                    {Platform.OS === "android" ? (
+                      <Picker
+                        selectedValue={values?.pincode}
+                        style={{
+                          height: hp("6%"),
+                          width: Dimensions.get("window").width - 40,
+                        }}
+                        onValueChange={(itemValue) =>
+                          setFieldValue("pincode", itemValue, true)
+                        }
+                      >
+                        {pincodes?.map((pincode) => (
+                          <Picker.Item
+                            placeholder="Select Pincode"
+                            key={pincode.value}
+                            label={pincode.label}
+                            value={pincode.value}
+                            disabled={pincode.disabled}
+                          />
+                        ))}
+                      </Picker>
+                    ) : (
+                      <RNPickerSelect
+                        onValueChange={(itemValue) =>
+                          setFieldValue("pincode", itemValue, true)
+                        }
+                        placeholder="Select Pincode"
+                        items={pincodes}
+                      />
+                    )}
                   </View>
 
                   {errors.pincode && touched.pincode ? (
@@ -315,6 +339,6 @@ const styles = StyleSheet.create({
     borderColor: COLORS.textGrey,
     borderRadius: hp("0.8%"),
     width: Dimensions.get("window").width - 40,
-    padding: Platform.OS === 'ios' ?  hp("2%"):0
+    padding: Platform.OS === "ios" ? hp("2%") : 0,
   },
 });

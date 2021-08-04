@@ -13,9 +13,9 @@ var color = "black";
 
 const DeliverySlotTiming = (props) => {
   const times = [
-    { index: 0, value: "06-11 AM" },
-    { index: 1, value: "13-16 PM" },
-    { index: 2, value: "17-22 PM" },
+    { index: 0, value: "06-09 PM" },
+    // { index: 1, value: "13-16 PM" },
+    // { index: 2, value: "17-22 PM" },
   ];
 
   return (
@@ -29,7 +29,11 @@ const DeliverySlotTiming = (props) => {
 
           let date = new Date();
           let hours = date.getHours();
-          let TimeBool = checkEndTime > hours + 7;
+          let ampm = hours >= 12 ? "pm" : "am";
+          hoursm = hours % 12;
+          hoursm = hours ? hours : 12;
+          // alert(hours);
+          let TimeBool = 21 > hours + 7;
           if (currentDate === props.date) {
             if (TimeBool === true) {
               color = "black";

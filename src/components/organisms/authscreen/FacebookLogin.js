@@ -25,13 +25,11 @@ const FacebookLogin = ({
   }, [isAuthenticated, facebookLoginLoading]);
   ///Facebook Login to access Data
   const _fbAuth = async () => {
-
     let { isCancelled } = await LoginManager.logInWithPermissions([
       "public_profile",
       "email",
     ]);
     if (!isCancelled) {
-      
       let data = await AccessToken.getCurrentAccessToken();
       let token = data.accessToken.toString();
       const userData = await getDataFromFacebook(token);

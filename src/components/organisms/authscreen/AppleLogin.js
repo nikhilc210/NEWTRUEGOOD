@@ -30,28 +30,28 @@ const AppleRegister = ({
 
   async function onAppleButtonPress() {
     try {
+      // await appleLoginUser(sendData);
+
       const appleAuthRequestResponse = await appleAuth.performRequest({
         requestedOperation: appleAuth.Operation.LOGIN,
         requestedScopes: [appleAuth.Scope.EMAIL, appleAuth.Scope.FULL_NAME],
       });
 
-      // get current authentication state for user
-      // /!\ This method must be tested on a real device. On the iOS simulator it always throws an error.
       const credentialState = await appleAuth.getCredentialStateForUser(
         appleAuthRequestResponse.user
       );
 
       // use credentialState response to ensure the user is authenticated
       if (credentialState === appleAuth.State.AUTHORIZED) {
-        const { email, fullName } = appleAuthRequestResponse;
+        const { email, fullName, identityToken } = appleAuthRequestResponse;
         // alert(JSON.stringify(appleAuthRequestResponse));
         const sendData = {
           email,
           name: fullName?.givenName
             ? fullName?.givenName + " " + fullName.familyName
             : "",
+          identityToken: identityToken,
         };
-
         await appleLoginUser(sendData);
       }
     } catch (error) {

@@ -41,6 +41,7 @@ function ModifiedProductItem({
     image_URL,
     discount,
     weight,
+    uom,
     isOffer,
     offer_price,
     item_stock,
@@ -72,6 +73,7 @@ function ModifiedProductItem({
       quantity: 1,
       item_stock,
       tax_id: "",
+      uom,
     };
     addToCart(productDetails);
   };
@@ -103,6 +105,7 @@ function ModifiedProductItem({
       image_URL,
       discount,
       weight,
+      uom,
     };
     await setProduct(productDetails);
     navigate("SingleProductDetailScreen", { productId: _id });
@@ -149,13 +152,19 @@ function ModifiedProductItem({
             {name}
           </Text>
           <Text style={styles.weightTextStyle} numberOfLines={1}>
-            {weight}
+            {uom}
           </Text>
           <View style={styles.wrapperViewStyle}>
-            <View style={styles.priceView}>
-              <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
-              <Text style={styles.discountPriceTextStyle}>₹ {price}</Text>
-            </View>
+            {newPrice == price ? (
+              <View style={styles.priceView}>
+                <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
+              </View>
+            ) : (
+              <View style={styles.priceView}>
+                <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
+                <Text style={styles.discountPriceTextStyle}>₹ {price}</Text>
+              </View>
+            )}
           </View>
         </TouchableOpacity>
         <View

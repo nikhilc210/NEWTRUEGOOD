@@ -1,44 +1,44 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, TextInput, Dimensions} from 'react-native';
-import BackHeader from '../../components/inc/BackHeader';
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, Dimensions } from "react-native";
+import BackHeader from "../../components/inc/BackHeader";
 
 //Required Imports
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {COLORS, FONTS} from '../../constants/theme';
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import { COLORS, FONTS } from "../../constants/theme";
 
-import {Formik} from 'formik';
-import * as Yup from 'yup';
-import {RFValue} from 'react-native-responsive-fontsize';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { Formik } from "formik";
+import * as Yup from "yup";
+import { RFValue } from "react-native-responsive-fontsize";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {updateUserData} from '../../redux/actions/auth';
-import {ActivityIndicator} from 'react-native-paper';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { updateUserData } from "../../redux/actions/auth";
+import { ActivityIndicator } from "react-native-paper";
 
 //OTPS::
-import {sendOtp} from '../../redux/actions/otp';
-import {navigate} from '../../navigations/RootNavigation';
+import { sendOtp } from "../../redux/actions/otp";
+import { navigate } from "../../navigations/RootNavigation";
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = Dimensions.get("window").width;
 
 const LoginSchema = Yup.object().shape({
   phoneNumber: Yup.string()
     .matches(
       /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
-      'Phone number is not valid',
+      "Phone number is not valid"
     )
-    .required('Please enter your phone number'),
-  name: Yup.string().required('Please enter your name'),
+    .required("Please enter your phone number"),
+  name: Yup.string().required("Please enter your name"),
 });
 
-const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
-  const {name, mobile_no} =
+const ProfileScreen = ({ userData: { user }, updateUserData, sendOtp }) => {
+  const { name, mobile_no } =
     user === null
       ? {
-          name: '',
-          mobile_no: '',
+          name: "",
+          mobile_no: "",
         }
       : user;
 
@@ -46,7 +46,7 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
 
   const updateProfile = async (data) => {
     setLoader(true);
-    const {name, phoneNumber} = data;
+    const { name, phoneNumber } = data;
 
     let sendData = {
       name,
@@ -56,7 +56,7 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
     if (phoneNumber !== mobile_no) {
       await sendOtp(phoneNumber);
       setLoader(false);
-      navigate('OTPNavigator', {data: sendData});
+      navigate("OTPNavigator", { data: sendData });
     } else {
       await updateUserData(sendData);
     }
@@ -65,13 +65,15 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
   return (
     <View style={styles.container}>
       <BackHeader title="Edit Profile" />
-      <View style={{marginTop: hp('5%')}}>
+      <View style={{ marginTop: hp("5%") }}>
         <Formik
-          initialValues={{phoneNumber: mobile_no, name: name}}
+          initialValues={{ phoneNumber: mobile_no, name: name }}
           validationSchema={LoginSchema}
-          onSubmit={(values) => {
-            updateProfile(values);
-          }}>
+          onSubmit={async (values, { resetForm }) => {
+            await updateProfile(values);
+            resetForm({});
+          }}
+        >
           {({
             handleChange,
             handleBlur,
@@ -84,8 +86,8 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
               <TextInput
                 style={styles.inputStyle}
                 placeholder="Enter Full Name"
-                onChangeText={handleChange('name')}
-                onBlur={handleBlur('name')}
+                onChangeText={handleChange("name")}
+                onBlur={handleBlur("name")}
                 value={values.name}
                 underlineColorAndroid="transparent"
               />
@@ -96,8 +98,8 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
                 style={styles.inputStyle}
                 placeholder="Enter mobile number"
                 keyboardType="number-pad"
-                onChangeText={handleChange('phoneNumber')}
-                onBlur={handleBlur('phoneNumber')}
+                onChangeText={handleChange("phoneNumber")}
+                onBlur={handleBlur("phoneNumber")}
                 value={values.phoneNumber}
                 underlineColorAndroid="transparent"
               />
@@ -106,7 +108,8 @@ const ProfileScreen = ({userData: {user}, updateUserData, sendOtp}) => {
               ) : null}
               <TouchableOpacity
                 style={styles.loginButtonStyle}
-                onPress={handleSubmit}>
+                onPress={handleSubmit}
+              >
                 {loader ? (
                   <ActivityIndicator color="white" size="small" />
                 ) : (
@@ -129,33 +132,33 @@ const mapStateToProps = (state) => ({
   userData: state.auth,
 });
 
-export default connect(mapStateToProps, {updateUserData, sendOtp})(
-  ProfileScreen,
+export default connect(mapStateToProps, { updateUserData, sendOtp })(
+  ProfileScreen
 );
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
   inputStyle: {
-    height: hp('6%'),
+    height: hp("6%"),
     borderWidth: 1,
     borderColor: COLORS.textGrey,
-    borderRadius: hp('0.8%'),
+    borderRadius: hp("0.8%"),
     width: windowWidth - 40,
-    paddingLeft: hp('2%'),
-    marginTop: hp('2%'),
+    paddingLeft: hp("2%"),
+    marginTop: hp("2%"),
   },
   loginButtonStyle: {
-    height: hp('6%'),
+    height: hp("6%"),
     width: windowWidth - 40,
-    borderRadius: hp('0.8%'),
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderRadius: hp("0.8%"),
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: COLORS.primary,
     elevation: 5,
-    marginTop: hp('3%'),
+    marginTop: hp("3%"),
   },
   loginTextStyle: {
     fontSize: RFValue(12),
@@ -165,10 +168,10 @@ const styles = StyleSheet.create({
   errorStyle: {
     fontSize: RFValue(8),
     fontFamily: FONTS.primaryFONT,
-    color: 'red',
+    color: "red",
   },
   socialLoginViewStyle: {
-    marginBottom: hp('5%'),
-    flexDirection: 'row',
+    marginBottom: hp("5%"),
+    flexDirection: "row",
   },
 });

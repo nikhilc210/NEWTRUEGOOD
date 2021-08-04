@@ -23,7 +23,7 @@ function OrderDetailBillingView({ cartData: { items } }) {
         <Text style={styles.titleItemTextStyle}>Item Total</Text>
         <Text style={styles.pricingTextStyle}>{items.length}</Text>
       </View>
-      {total > 700 ? null : (
+      {total > 499 ? null : (
         <View style={styles.singleItemViewStyle}>
           <Text style={styles.titleItemTextStyle}>Delivery Fee</Text>
           <Text style={styles.pricingTextStyle}>₹ 50</Text>
@@ -37,7 +37,7 @@ function OrderDetailBillingView({ cartData: { items } }) {
       <View style={styles.totalItemViewStyle}>
         <Text style={styles.totalItemTextStyle}>Total</Text>
         <Text style={styles.totalPriceTextStyle}>
-          ₹ {total > 700 ? total : total + 50}
+          ₹ {total > 499 ? total : total + 50}
         </Text>
       </View>
     </View>

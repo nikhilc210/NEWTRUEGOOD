@@ -18,6 +18,7 @@ const BestSellerProducts = () => {
       let data = await getBestSellerProducts();
       if (isMounted) {
         setProducts(data);
+        console.log("my", data);
         setLoading(false);
       }
     };

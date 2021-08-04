@@ -71,7 +71,7 @@ function HomeScren() {
           <BestSellerProducts />
           <Informative />
           <ShopByCategoryView />
-          <InformativeBanner />
+          {/* <InformativeBanner /> */}
         </ScrollView>
       </View>
       <Pressable

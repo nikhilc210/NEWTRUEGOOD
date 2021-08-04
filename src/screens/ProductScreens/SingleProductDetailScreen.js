@@ -126,10 +126,16 @@ const SingleProductDetailScreen = ({
             <View style={styles.productDetailViewStyle}>
               <View>
                 <Text style={styles.productNameTextStyle}>{name}</Text>
-                <View style={styles.priceView}>
-                  <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
-                  <Text style={styles.discountPriceTextStyle}>{price}</Text>
-                </View>
+                {newPrice == price ? (
+                  <View style={styles.priceView}>
+                    <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
+                  </View>
+                ) : (
+                  <View style={styles.priceView}>
+                    <Text style={styles.priceTextStyle}>₹ {newPrice}</Text>
+                    <Text style={styles.discountPriceTextStyle}>{price}</Text>
+                  </View>
+                )}
               </View>
               <View style={{ flexDirection: "row", marginTop: hp("2%") }}>
                 {qty > 0 ? (
@@ -275,7 +281,6 @@ const styles = StyleSheet.create({
     fontFamily: FONTS.primaryFONT,
     color: COLORS.black,
     fontWeight: "400",
-    maxWidth: "80%",
   },
   weightTextStyle: {
     fontSize: RFValue(20),

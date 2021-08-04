@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { COLORS, FONTS } from "../../constants/theme";
@@ -18,20 +18,31 @@ import PastOrderItem from "../../components/organisms/orderscreen/PastOrderItem"
 
 const PastOrderDetailScreen = ({ route, getOrderDetailsById, orderData }) => {
   const orderId = route.params.orderId;
-
+  const [message, setMessage] = useState("");
   useEffect(() => {
     getOrderDetailsById(orderId);
   }, [orderId]);
 
   let stepperValue = useMemo(() => {
     if (orderData?.order?.delivery_status === "in_progress") {
+      setMessage(
+        "Order Received - Your Order is with us and we are getting it ready to deliver soon! 🧺"
+      );
       return 1;
     }
     if (orderData?.order?.delivery_status === "shipped") {
+      setMessage("Order Shipped - Your TrueGood basket is on its way! 🚛");
       return 2;
     }
 
     if (orderData?.order?.delivery_status === "delivered") {
+      setMessage(
+        "Order Delivered - Your basket has been delivered by our executive. Bon Appetite! 🌶"
+      );
+      return 3;
+    }
+    if (orderData?.order?.delivery_status === "cancel") {
+      setMessage("Order Cancelled - Your order has been cancelled");
       return 3;
     }
 
@@ -78,11 +89,8 @@ const PastOrderDetailScreen = ({ route, getOrderDetailsById, orderData }) => {
               <Text style={styles.totalTitleTextStyle}>
                 Message from vendor
               </Text>
-              <Text style={styles.orderReceivedTextStyle}>Order Received</Text>
-              <Text style={styles.orderStatusDetailTextStyle}>
-                Your order is with us. It getting reday for dispach.Order will
-                be delivered by Ramesh in approx 120 mins
-              </Text>
+
+              <Text style={styles.orderStatusDetailTextStyle}>{message}</Text>
             </View>
             <Text style={styles.orderReceivedTextStyle}>Delivery Address</Text>
             <Text style={{ fontWeight: "bold", fontSize: RFValue(10) }}>

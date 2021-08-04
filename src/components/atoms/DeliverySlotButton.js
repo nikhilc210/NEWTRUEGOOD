@@ -27,7 +27,7 @@ const DeliverySlotButton = (props) => {
     let hours = date.getHours();
 
     if (currentDate === item.date) {
-      let TimeBool = checkEndTime > hours + 7;
+      let TimeBool = 21 > hours + 7;
       if (TimeBool === true) {
         dispatch({ type: SELECT_SLOT, payload: item });
         Alert.alert("Selected", "The delivery slot has been selected", [

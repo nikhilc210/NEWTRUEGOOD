@@ -16,6 +16,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import ViewAddressDialog from "../../components/organisms/deliveryScreen/ViewAddressDialog";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { navigate } from "../../navigations/RootNavigation";
+import { add } from "lodash-es";
 
 const DeliveryScreen = ({
   getAddress,
@@ -62,6 +63,7 @@ const DeliveryScreen = ({
         <Text>Getting addresses....</Text>
       ) : (
         addresses?.map((address, index) => {
+          console.log("Address", address);
           return (
             <View style={styles.wrapper} key={index}>
               <RadioButton
@@ -82,7 +84,9 @@ const DeliveryScreen = ({
                     setViewVisible(true);
                   }}
                 >
-                  <Text style={styles.AddressTitle}>{address.number}</Text>
+                  <Text style={styles.AddressTitle}>
+                    {address.firstName + " " + address.lastName}
+                  </Text>
                   <Text style={styles.AddressTitle}>{address.type}</Text>
                   <Text style={styles.AddressDetail}>
                     {address.street_address}

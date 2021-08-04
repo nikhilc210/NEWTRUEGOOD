@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Image,
   Pressable,
@@ -6,39 +6,38 @@ import {
   Text,
   ToastAndroid,
   View,
-} from 'react-native';
+} from "react-native";
 
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import {COLORS, FONTS} from '../../../constants/theme';
+} from "react-native-responsive-screen";
+import { COLORS, FONTS } from "../../../constants/theme";
 
-import {RFValue} from 'react-native-responsive-fontsize';
-import AntDesign from 'react-native-vector-icons/AntDesign';
-import Entypo from 'react-native-vector-icons/Entypo';
+import { RFValue } from "react-native-responsive-fontsize";
+import AntDesign from "react-native-vector-icons/AntDesign";
+import Entypo from "react-native-vector-icons/Entypo";
 
-import Toast from 'react-native-simple-toast'
-
+import Toast from "react-native-simple-toast";
 
 //Redux Imports
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {
   decQuantity,
   incQuantity,
   removeItem,
-} from '../../../redux/actions/cart';
+} from "../../../redux/actions/cart";
 
 let isFinished = false;
 
 function CartProductItem({
-  data: {id, name, price, image, weight, item_stock},
+  data: { id, name, price, image, weight, item_stock, uom },
   decQuantity,
   incQuantity,
   removeItem,
-  cartData: {items},
-  inventoryData: {errors},
+  cartData: { items },
+  inventoryData: { errors },
 }) {
   const qty = items.find((item) => item.id === id)
     ? items.find((item) => item.id === id).quantity
@@ -56,7 +55,7 @@ function CartProductItem({
     if (qty >= 99 || qty >= item_stock) {
       Toast.show(
         `Maximum Order Limit for this product is ${item_stock}.You cannot add more!`,
-        Toast.SHORT,
+        Toast.SHORT
       );
     } else {
       incQuantity(id);
@@ -78,25 +77,28 @@ function CartProductItem({
   return (
     <View
       style={{
-        borderColor: isFinished ? 'red' : COLORS.textGrey,
+        borderColor: isFinished ? "red" : COLORS.textGrey,
         borderWidth: 2,
-        paddingBottom: hp('1%'),
-        paddingTop: hp('2%'),
-        paddingHorizontal: wp('2%'),
-        flexDirection: 'row',
-      }}>
+        paddingBottom: hp("1%"),
+        paddingTop: hp("2%"),
+        paddingHorizontal: wp("2%"),
+        flexDirection: "row",
+      }}
+    >
       <View
         style={{
           flex: 1.5,
-        }}>
+        }}
+      >
         <View
           style={{
-            backgroundColor: 'white',
+            backgroundColor: "white",
             elevation: 4,
             marginBottom: RFValue(10),
-          }}>
+          }}
+        >
           <Image
-            source={{uri: image}}
+            source={{ uri: image }}
             style={styles.productImageStyle}
             resizeMode="contain"
           />
@@ -104,29 +106,31 @@ function CartProductItem({
         <Pressable
           onPress={() => removeItemFromCart()}
           style={{
-            paddingVertical: hp('0.5%'),
+            paddingVertical: hp("0.5%"),
             backgroundColor: COLORS.primary,
-            flexDirection: 'row',
-            borderRadius: hp('0.5%'),
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
+            flexDirection: "row",
+            borderRadius: hp("0.5%"),
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <AntDesign name="delete" color="white" />
-          <Text style={{color: 'white', marginLeft: hp('1%')}}>Remove</Text>
+          <Text style={{ color: "white", marginLeft: hp("1%") }}>Remove</Text>
         </Pressable>
       </View>
       <View
         style={{
           flex: 3,
-        }}>
+        }}
+      >
         <Text style={styles.productNameTextStyle} numberOfLines={1}>
           {name}
         </Text>
-        <Text style={{marginLeft: hp('2%'), color: 'red'}}>
-          {isFinished ? 'Item in not availabe' : null}
+        <Text style={{ marginLeft: hp("2%"), color: "red" }}>
+          {isFinished ? "Item in not availabe" : null}
         </Text>
         <Text style={styles.weightTextStyle} numberOfLines={1}>
-          {weight}
+          {uom}
         </Text>
         <View style={styles.wrapperViewStyle}>
           <View style={styles.priceView}>
@@ -135,23 +139,26 @@ function CartProductItem({
         </View>
         <View
           style={{
-            alignContent: 'flex-end',
-            alignItems: 'flex-end',
-          }}>
+            alignContent: "flex-end",
+            alignItems: "flex-end",
+          }}
+        >
           <View style={styles.addedContainer}>
             <Pressable
-              style={{paddingHorizontal: wp('1.5%')}}
+              style={{ paddingHorizontal: wp("1.5%") }}
               onPress={() => {
                 decreaseCart();
-              }}>
+              }}
+            >
               <AntDesign name="minus" color={COLORS.primary} />
             </Pressable>
             <View style={styles.backgroundStyle}>
               <Text style={styles.qtyTextStyle}>{qty}</Text>
             </View>
             <Pressable
-              style={{paddingHorizontal: wp('1.5%')}}
-              onPress={() => increaseCart()}>
+              style={{ paddingHorizontal: wp("1.5%") }}
+              onPress={() => increaseCart()}
+            >
               <Entypo name="plus" color={COLORS.primary} />
             </Pressable>
           </View>
@@ -173,62 +180,64 @@ const mapStateToProps = (state) => ({
   inventoryData: state.inventory,
 });
 
-export default connect(mapStateToProps, {incQuantity, decQuantity, removeItem})(
-  CartProductItem,
-);
+export default connect(mapStateToProps, {
+  incQuantity,
+  decQuantity,
+  removeItem,
+})(CartProductItem);
 
 const styles = StyleSheet.create({
   container: {
-    borderColor: isFinished ? 'red' : COLORS.textGrey,
+    borderColor: isFinished ? "red" : COLORS.textGrey,
     borderWidth: 2,
-    paddingBottom: hp('1%'),
-    paddingTop: hp('2%'),
-    paddingHorizontal: wp('2%'),
-    flexDirection: 'row',
+    paddingBottom: hp("1%"),
+    paddingTop: hp("2%"),
+    paddingHorizontal: wp("2%"),
+    flexDirection: "row",
   },
   productImageStyle: {
-    width: '100%',
-    height: hp('8%'),
+    width: "100%",
+    height: hp("8%"),
   },
   productNameTextStyle: {
     fontSize: RFValue(11),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.black,
-    fontWeight: '700',
-    marginLeft: hp('2%'),
+    fontWeight: "700",
+    marginLeft: hp("2%"),
   },
   priceView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: hp('1%'),
-    marginLeft: hp('2%'),
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: hp("1%"),
+    marginLeft: hp("2%"),
   },
   priceTextStyle: {
     fontSize: RFValue(14),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.black,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   discountPriceTextStyle: {
     fontSize: RFValue(11),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.textGrey,
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
-    marginLeft: hp('1%'),
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
+    marginLeft: hp("1%"),
   },
   wrapperViewStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingRight: hp('3%'),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: hp("3%"),
   },
   addContainer: {
-    paddingVertical: hp('0.7%'),
-    paddingHorizontal: wp('7%'),
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: hp('0.5%'),
+    paddingVertical: hp("0.7%"),
+    paddingHorizontal: wp("7%"),
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: hp("0.5%"),
     backgroundColor: COLORS.primary,
     elevation: 1,
   },
@@ -240,23 +249,23 @@ const styles = StyleSheet.create({
   addedContainer: {
     borderWidth: 1,
     borderColor: COLORS.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: hp('0.5%'),
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: hp("0.5%"),
     elevation: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   backgroundStyle: {
     backgroundColor: COLORS.primary,
-    paddingHorizontal: wp('3%'),
-    paddingVertical: hp('0.3%'),
+    paddingHorizontal: wp("3%"),
+    paddingVertical: hp("0.3%"),
   },
   qtyTextStyle: {
-    color: 'white',
+    color: "white",
   },
   weightTextStyle: {
     color: COLORS.black,
     fontSize: RFValue(11),
-    marginLeft: hp('2%'),
+    marginLeft: hp("2%"),
   },
 });

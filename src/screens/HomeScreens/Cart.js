@@ -42,7 +42,7 @@ const CartScreen = ({ cartData: { items } }) => {
                 }}
               >
                 <Text style={styles.titleTextStyle}>Note:</Text>
-                <Text>Free Delivery on order above Rs 700/-</Text>
+                <Text>Free Delivery on order above Rs 499/-</Text>
               </View>
 
               <View

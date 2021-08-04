@@ -30,7 +30,12 @@ const DrawerUpperList = ({ LogOut }) => {
         onPress: () => null,
         style: "cancel",
       },
-      { text: "OK", onPress: () => LogOut() },
+      {
+        text: "OK",
+        onPress: () => {
+          LogOut();
+        },
+      },
     ]);
   };
   return (

@@ -1,33 +1,42 @@
-import React from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import React from "react";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-import {COLORS, FONTS} from '../../../constants/theme';
+} from "react-native-responsive-screen";
+import { COLORS, FONTS } from "../../../constants/theme";
 
-import {RFValue} from 'react-native-responsive-fontsize';
+import { RFValue } from "react-native-responsive-fontsize";
 
 function OrderSingleItem({
   // data: {id = 1, name = 'bipul', image = '', quantity = 9},
   data,
 }) {
-  const {id = 1, name = 'bipul', image = 'https://', quantity = 9} = data;
+  const {
+    id = 1,
+    name = "bipul",
+    price = 0,
+    image = "https://",
+    quantity = 9,
+  } = data;
+  console.log(data);
   return (
     <View style={styles.container}>
       <View
         style={{
           flex: 1.5,
-        }}>
+        }}
+      >
         <View
           style={{
-            backgroundColor: 'white',
+            backgroundColor: "white",
             elevation: 4,
             marginBottom: RFValue(10),
-          }}>
+          }}
+        >
           <Image
-            source={{uri: image}}
+            source={{ uri: image }}
             style={styles.productImageStyle}
             resizeMode="contain"
           />
@@ -36,18 +45,24 @@ function OrderSingleItem({
       <View
         style={{
           flex: 3,
-        }}>
+        }}
+      >
         <Text style={styles.productNameTextStyle} numberOfLines={1}>
           {name}
         </Text>
+        <Text style={styles.productNameTextStyle} numberOfLines={1}>
+          Price : INR {price} /-
+        </Text>
         <View
           style={{
-            alignContent: 'flex-end',
-            alignItems: 'flex-end',
-          }}>
+            alignContent: "flex-end",
+            alignItems: "flex-end",
+            marginTop: 5,
+          }}
+        >
           <View style={styles.addedContainer}>
             <View style={styles.backgroundStyle}>
-              <Text style={styles.qtyTextStyle}>{quantity}</Text>
+              <Text style={styles.qtyTextStyle}>Qty {quantity}</Text>
             </View>
           </View>
         </View>
@@ -62,54 +77,54 @@ const styles = StyleSheet.create({
   container: {
     borderColor: COLORS.textGrey,
     borderWidth: 2,
-    paddingBottom: hp('1%'),
-    paddingTop: hp('2%'),
-    paddingHorizontal: wp('2%'),
-    flexDirection: 'row',
+    paddingBottom: hp("1%"),
+    paddingTop: hp("2%"),
+    paddingHorizontal: wp("2%"),
+    flexDirection: "row",
   },
   productImageStyle: {
-    width: '100%',
-    height: hp('8%'),
+    width: "100%",
+    height: hp("8%"),
   },
   productNameTextStyle: {
     fontSize: RFValue(11),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.black,
-    fontWeight: '700',
-    marginLeft: hp('2%'),
+    fontWeight: "700",
+    marginLeft: hp("2%"),
   },
   priceView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: hp('1%'),
-    marginLeft: hp('2%'),
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: hp("1%"),
+    marginLeft: hp("2%"),
   },
   priceTextStyle: {
     fontSize: RFValue(14),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.black,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   discountPriceTextStyle: {
     fontSize: RFValue(11),
-    marginTop: hp('1%'),
+    marginTop: hp("1%"),
     color: COLORS.textGrey,
-    textDecorationLine: 'line-through',
-    textDecorationStyle: 'solid',
-    marginLeft: hp('1%'),
+    textDecorationLine: "line-through",
+    textDecorationStyle: "solid",
+    marginLeft: hp("1%"),
   },
   wrapperViewStyle: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingRight: hp('3%'),
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: hp("3%"),
   },
   addContainer: {
-    paddingVertical: hp('0.7%'),
-    paddingHorizontal: wp('7%'),
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: hp('0.5%'),
+    paddingVertical: hp("0.7%"),
+    paddingHorizontal: wp("7%"),
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: hp("0.5%"),
     backgroundColor: COLORS.primary,
     elevation: 1,
   },
@@ -121,23 +136,23 @@ const styles = StyleSheet.create({
   addedContainer: {
     borderWidth: 1,
     borderColor: COLORS.primary,
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: hp('0.5%'),
+    flexDirection: "row",
+    alignItems: "center",
+    borderRadius: hp("0.5%"),
     elevation: 1,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   backgroundStyle: {
     backgroundColor: COLORS.primary,
-    paddingHorizontal: wp('3%'),
-    paddingVertical: hp('0.3%'),
+    paddingHorizontal: wp("3%"),
+    paddingVertical: hp("0.3%"),
   },
   qtyTextStyle: {
-    color: 'white',
+    color: "white",
   },
   weightTextStyle: {
     color: COLORS.black,
     fontSize: RFValue(11),
-    marginLeft: hp('2%'),
+    marginLeft: hp("2%"),
   },
 });

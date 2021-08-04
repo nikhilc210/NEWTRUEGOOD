@@ -247,15 +247,16 @@ export const appleLoginUser = (userData) => async (dispatch) => {
   };
 
   let sendData = {
-    name: userData.name,
-    email: userData.email,
+    name: userData.name || "",
+    email: userData.email || "",
+    identityToken: userData.identityToken,
   };
 
   const body = JSON.stringify(sendData);
 
   try {
     const response = await axios.post(
-      `${API_URL}/customer/loginSocial`,
+      `${API_URL}/customer/loginSocial/apple`,
       body,
       config
     );
